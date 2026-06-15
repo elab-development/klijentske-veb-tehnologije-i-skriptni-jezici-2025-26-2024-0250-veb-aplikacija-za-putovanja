@@ -109,3 +109,5 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.container { max-width: 1200px; margin: auto; } i .review-card { border-bottom: 1px solid #ccc; }
