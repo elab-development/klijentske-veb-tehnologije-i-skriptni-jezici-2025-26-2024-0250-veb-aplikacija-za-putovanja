@@ -1,48 +1,89 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
-    return (
-        <div className="container">
-            <img src="/logo-crveni.png" alt="Logo" style={{ width: '80px' }} />
-            <h1 style={{ fontSize: '40px', marginBottom: '0' }}>Srpski putnik</h1>
-            <p>Tvoje sledeće putovanje počinje ovde!</p>
-            
-            <div className="form-box">
-                <p style={{ background: '#e0d4ff', padding: '10px', borderRadius: '5px' }}>
-                    Dobro došli na platformu koja vam olakšava planiranje svakog putovanja...
-                </p>
-                <input 
-                    className="input-field" 
-                    type="email" 
-                    placeholder="Email" 
-                    onChange={(e) => setEmail(e.target.value)} 
-                />
-                <input 
-                    className="input-field" 
-                    type="password" 
-                    placeholder="Lozinka" 
-                />
-                <p style={{ fontSize: '12px', textAlign: 'right' }}>Zaboravljena lozinka?</p>
-                <button className="btn-primary" onClick={() => navigate('/search')}>Prijavi se</button>
-                
-                <p style={{ marginTop: '20px' }}>Nemate nalog?</p>
-                <button className="btn-secondary" onClick={() => navigate('/register')}>Registruj se</button>
-            </div>
-            
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '50px', fontSize: '12px', textAlign: 'left' }}>
-                <div>
-                    <p><strong>Adresa</strong><br/>Jove Ilića 154, Beograd</p>
-                </div>
-                <div>
-                    <p><strong>Kontakt</strong><br/>putovanja@gmail.com</p>
-                </div>
-            </div>
+  return (
+    <div className="login-page">
+      <img
+        src="/logo-crveni.png"
+        alt="Logo"
+        className="login-logo"
+      />
+
+      <h1 className="login-title">Srpski putnik</h1>
+
+      <p className="login-subtitle">
+        Tvoje sledeće putovanje počinje ovde!
+      </p>
+
+      <div className="login-form">
+        <div className="login-welcome">
+          Dobro došli na platformu koja vam olakšava planiranje svakog
+          putovanja – od rezervacije putnih aranžmana do pronalaska
+          najzanimljivijih atrakcija u gradu.
         </div>
-    );
+
+        <input
+          className="login-input"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          className="login-input"
+          type="password"
+          placeholder="Lozinka"
+        />
+
+        <p className="login-forgot">
+          Zaboravljena lozinka?
+        </p>
+
+        <button
+          className="login-btn"
+          onClick={() => navigate("/search")}
+        >
+          Prijavi se
+        </button>
+
+        <p className="login-register-text">
+          Nemate nalog?
+        </p>
+
+        <button
+          className="login-register-btn"
+          onClick={() => navigate("/register")}
+        >
+          Registruj se
+        </button>
+      </div>
+
+      <div className="login-footer">
+        <div>
+          <h4>Adresa</h4>
+          <p>Jove Ilića 154, 11000 Beograd</p>
+
+          <h4>Radno vreme</h4>
+          <p>
+            Radni dan 08:00 - 15:00
+            <br />
+            Vikend 08:00 - 12:00
+          </p>
+        </div>
+
+        <div>
+          <h4>Kontakt</h4>
+          <p>putovanja@gmail.com</p>
+          <p>+381 61 522 3434</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
