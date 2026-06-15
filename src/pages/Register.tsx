@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../App.css"; // POPRAVLJENO: Putanja uspešno izlazi iz pages foldera i vuče App.css
+import "./Register.css"; // POVEZANO: Sada Register vuče stilove direktno iz svog CSS fajla
 
 const Register = () => {
   const navigate = useNavigate();
