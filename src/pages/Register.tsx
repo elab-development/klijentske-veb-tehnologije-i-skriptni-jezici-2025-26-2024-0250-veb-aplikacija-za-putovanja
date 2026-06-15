@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css"; // POVEZANO: Sada Register vuče stilove direktno iz svog CSS fajla
+import Navbar from '../components/Navbar';
 
+// I unutar return-a samo pozoveš:
+<Navbar />
 const Register = () => {
   const navigate = useNavigate();
 

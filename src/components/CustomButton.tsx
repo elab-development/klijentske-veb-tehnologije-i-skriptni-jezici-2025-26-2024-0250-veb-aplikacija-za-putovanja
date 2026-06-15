@@ -1,12 +1,19 @@
-interface ButtonProps {
+import React from 'react';
+import "../App.css";
+
+interface CustomButtonProps {
     text: string;
     onClick?: () => void;
-    type?: "button" | "submit";
+    className?: string;
+    type?: "button" | "submit" | "reset";
 }
 
-const CustomButton = ({ text, onClick, type = "button" }: ButtonProps) => (
-    <button onClick={onClick} type={type} style={{ padding: '10px 20px', cursor: 'pointer' }}>
-        {text}
-    </button>
-);
+const CustomButton: React.FC<CustomButtonProps> = ({ text, onClick, className, type = "button" }) => {
+    return (
+        <button type={type} className={`search-action-btn ${className || ''}`} onClick={onClick}>
+            {text}
+        </button>
+    );
+};
+
 export default CustomButton;

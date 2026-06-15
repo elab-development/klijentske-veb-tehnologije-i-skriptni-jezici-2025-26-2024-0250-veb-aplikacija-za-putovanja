@@ -461,7 +461,7 @@
 }
 
 .nav-btn-register {
-  background: #1e1e1e;
+  background: #ffffff;
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -487,7 +487,7 @@
 
 .search-header p {
   font-size: 14px;
-  color: #555;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -823,5 +823,538 @@
   }
   .profile-footer-buttons {
     justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   STILOVI ZA OFFERS STRANICU (Srpski putnik)
+   ========================================================================== */
+
+.offers-page {
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 60px;
+}
+
+/* HEADER DELOVI */
+.offers-header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.offers-main-title {
+  font-size: 42px;
+  font-weight: bold;
+  color: #111;
+  margin: 0 0 5px 0;
+}
+
+.offers-subtitle {
+  font-size: 15px;
+  color: #444;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* KONTEJNER ZA MREŽU KARTICA */
+.offers-container {
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+}
+
+.offers-section-title {
+  font-size: 15px;
+  color: #111;
+  font-weight: bold;
+  margin: 0 0 25px 0;
+}
+
+/* KREIRANJE REDA SA KARTICAMA */
+.offers-grid {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  width: 100%;
+}
+
+/* INDIVIDUALNA KARTICA */
+.offer-card {
+  flex: 1;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* KUTIJA ZA SLIKU SA ZAOBLJENIM IVICAMA */
+.offer-image-box {
+  width: 100%;
+  height: 250px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  margin-bottom: 15px;
+}
+
+.offer-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TEKSTUALNI OPIS */
+.offer-description {
+  font-size: 14px;
+  color: #111;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  min-height: 63px; /* Osigurava da su kartice poravnate ako je opis kraći/duži */
+}
+
+/* DONJI RED KARTICE (CENA I DUGME) */
+.offer-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.offer-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: #555;
+}
+
+.price-amount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #111;
+}
+
+/* CRNO DUGME NA KARTICI */
+.offer-info-btn {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.offer-info-btn:hover {
+  background-color: #444444;
+}
+
+/* LJUBIČASTO DUGME NA SAMOM DNU */
+.offers-load-more-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.offers-load-more-btn {
+  background-color: #5d4da8; /* Nežna ljubičasta nijansa sa slike */
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.offers-load-more-btn:hover {
+  background-color: #4b3d8f;
+}
+
+.arrow-icon {
+  font-size: 14px;
+}
+
+/* Prilagođavanje za manje ekrane */
+@media (max-width: 768px) {
+  .offers-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  .offers-header {
+    padding: 0 20px;
+  }
+  .offers-container {
+    padding: 0 20px;
+  }
+}
+
+/* ==========================================================================
+   STILOVI ZA ATRAKCIJE STRANICU (Srpski putnik)
+   ========================================================================== */
+
+.attractions-page {
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 60px;
+}
+
+/* NASLOVI I PODNASLOVI */
+.attractions-header {
+  text-align: left;
+  width: 100%;
+  max-width: 850px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.attractions-header h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #111;
+  margin: 0 0 6px 0;
+}
+
+.attractions-subtitle {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+/* Zakrivljeni, rukom pisani tekst sa slike */
+.slanted-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #111;
+  transform: rotate(-4deg);
+  position: absolute;
+  right: 180px;
+  bottom: -20px;
+}
+
+/* STRUKTURA KARTICA SA INPUTIMA */
+.attractions-form-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 850px;
+  gap: 40px;
+  margin-top: 25px;
+}
+
+.attractions-card {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-sizing: border-box;
+}
+
+.right-card-align {
+  justify-content: flex-start;
+  height: max-content;
+}
+
+/* INPUTI, LABELI I SELEKTI */
+.attractions-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.attractions-input-box label {
+  font-size: 13px;
+  color: #111;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.attractions-input-box input,
+.attractions-input-box select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #222;
+  outline: none;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Specifičan izgled za zaključana (disabled) polja sa slike */
+.disabled-input {
+  background-color: #ffffff !important;
+  color: #b5b5b5 !important;
+  border: 1px solid #e8e8e8 !important;
+}
+
+.disabled-select {
+  background-color: #ffffff !important;
+  color: #222 !important;
+}
+
+.people-icon {
+  font-size: 14px;
+}
+
+/* DUGMIĆI NA DNU PANELA */
+.attractions-footer-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Belo/sivo uokvireno dugme Rezerviši */
+.attractions-reserve-btn {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 8px 30px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  transition: background-color 0.2s;
+}
+
+.attractions-reserve-btn:hover {
+  background-color: #f9f9f9;
+}
+
+/* Ljubičasto dugme na dnu */
+.attractions-special-btn {
+  background-color: #5d4da8; /* Ista ljubičasta sa prethodnog Offers ekrana */
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.attractions-special-btn:hover {
+  background-color: #4b3d8f;
+}
+
+/* Prilagođavanje za telefone */
+@media (max-width: 768px) {
+  .attractions-form-wrapper {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  .slanted-text {
+    position: static;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .attractions-header {
+    padding: 0 20px;
+  }
+}
+
+/* ==========================================================================
+   STILOVI ZA REVIEWS STRANICU (Srpski putnik)
+   ========================================================================== */
+
+.reviews-page {
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 80px;
+}
+
+/* HEADER SEKCIJA */
+.reviews-header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.reviews-main-title {
+  font-size: 42px;
+  font-weight: bold;
+  color: #111;
+  margin: 0 0 5px 0;
+}
+
+.reviews-subtitle {
+  font-size: 15px;
+  color: #444;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* KONTEJNER ZA SVE RECENZIJE */
+.reviews-container {
+  width: 100%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  margin-bottom: 50px;
+}
+
+/* JEDAN RED: AVATAR + TEKST */
+.review-row-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
+/* OKRUGLI BOX ZA SLIKU KLIJENTA */
+.review-avatar-box {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.review-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TEKSTUALNI DEO RECENZIJE */
+.review-content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.review-stars {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  font-size: 14px;
+  color: #111;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.review-author {
+  font-weight: 500;
+  color: #444;
+  white-space: nowrap;
+}
+
+/* KARTICA ZA UNOS NOVE RECENZIJE */
+.share-experience-card {
+  width: 100%;
+  max-width: 360px;
+  background-color: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 20px 25px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.015);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.share-experience-card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #111;
+  margin: 0;
+}
+
+.share-stars {
+  font-size: 18px;
+  color: #111;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+/* RED SA AVATAROM I INPUT POLJEM */
+.share-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.share-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.share-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.share-input-row input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Prilagođavanje za manje ekrane */
+@media (max-width: 768px) {
+  .reviews-container, .reviews-header {
+    padding: 0 20px;
+  }
+  .review-row-item {
+    gap: 15px;
   }
 }

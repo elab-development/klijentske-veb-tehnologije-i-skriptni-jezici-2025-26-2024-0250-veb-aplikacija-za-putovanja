@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../App.css"; // POVEZANO: Sada vuče sve stilove iz glavnog App.css fajla
+import Navbar from '../components/Navbar';
 
+// I unutar return-a samo pozoveš:
+<Navbar />
 const Search = () => {
     const navigate = useNavigate();
 
@@ -17,22 +20,7 @@ const Search = () => {
     return (
         <div className="search-page">
             
-            {/* 1. NAVBAR GORE */}
-            <nav className="search-navbar">
-                <div className="nav-logo">
-                    <img src="/logo-crveni.png" alt="Logo" />
-                </div>
-                <div className="nav-links">
-                    <span onClick={() => navigate('/reviews')}>Recenzije</span>
-                    <span onClick={() => navigate('/profile')}>Profil</span>
-                    <span onClick={() => navigate('/my-trips')}>Putovanja</span>
-                    <span onClick={() => navigate('/offers')}>Ponude</span>
-                </div>
-                <div className="nav-buttons">
-                    <button className="nav-btn-login" onClick={() => navigate('/')}>Prijavi se</button>
-                    <button className="nav-btn-register" onClick={() => navigate('/register')}>Registruj se</button>
-                </div>
-            </nav>
+           
 
             {/* 2. GLAVNI NASLOV */}
             <div className="search-header">
