@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <img
-        src="/logo-crveni.png"
+        src="/slike/logo.png"
         alt="Logo"
         className="login-logo"
       />

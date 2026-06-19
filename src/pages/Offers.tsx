@@ -54,7 +54,7 @@ const Offers = () => {
                         return (
                             <div key={trip.id} className="offer-card">
                                 <div className="offer-image-box">
-                                    <img src={trip.slika} alt={trip.naslov} />
+                                    <img src="slike/image5.png" alt={trip.naslov} />
                                 </div>
                                 
                                 <p className="offer-description">{trip.opis}</p>

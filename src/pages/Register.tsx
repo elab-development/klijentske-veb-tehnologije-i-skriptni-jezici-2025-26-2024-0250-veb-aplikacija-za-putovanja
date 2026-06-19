@@ -33,7 +33,7 @@ const Register = () => {
       
       {/* Mali logo skroz u gornjem levom uglu */}
       <div className="register-top-left">
-        <img src="/logo-crveni.png" alt="logo" className="register-mini-logo" />
+        <img src="/slike/logo.png" alt="logo" className="register-mini-logo" />
       </div>
 
       {/* Glavni Naslov sa ikonicom */}

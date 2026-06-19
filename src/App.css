@@ -1,5 +1,31 @@
 /* ================= LOGIN ================= */
 
+img {
+  display: block;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  color: #111;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+   margin: 0;
+  font-family: Arial, sans-serif;
+  color: #111;
+  background: #fff;
+}
 .login-page {
   min-height: 100vh;
   background: #fafafa;
@@ -112,7 +138,8 @@
 
 .login-footer {
   width: 80%;
-  max-width: 900px;
+ width: 100%;
+max-width: 1200px;
   display: flex;
   justify-content: space-between;
   margin-top: 100px;
@@ -290,7 +317,7 @@
   border: 1px solid #ececec;
   border-radius: 16px;
   padding: 35px 28px;
-  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.015);
+ box-shadow: none;
   position: relative; /* Neophodno da bi se pečat pozicionirao u odnosu na karticu */
   display: flex;
   flex-direction: column;
@@ -328,7 +355,7 @@
   background-color: #333333;
 }
 
-/* Uslovi i checkbox */
+
 .terms-box {
   display: flex;
   align-items: center;
@@ -346,20 +373,10 @@
   accent-color: #1e1e1e;
 }
 
-/* Crveni pečat sa avionom */
-.stamp-badge {
-  position: absolute;
-  top: -40px;   /* Izvlači pečat nagore van okvira kartice */
-  right: -35px; /* Izvlači pečat udesno van okvira kartice */
-  z-index: 5;
-}
 
-.stamp-badge img {
-  width: 85px;
-  height: auto;
-}
 
-/* DONJI DEO - Sigurnost podataka */
+
+
 .register-footer-security {
   margin-top: 50px;
   display: flex;
@@ -387,20 +404,13 @@
     max-width: 100%;
   }
 
-  .stamp-badge {
-    top: -35px;
-    right: 10px;
-  }
+ 
   
   .register-top-left {
     position: static;
     margin-bottom: 20px;
   }
 }
-
-/* ==========================================================================
-   STILOVI ZA SEARCH STRANICU (Srpski putnik)
-   ========================================================================== */
 
 .search-page {
   font-family: 'Arial', sans-serif;
@@ -413,16 +423,20 @@
   padding-bottom: 60px;
 }
 
-/* NAVBAR GORE */
 .search-navbar {
   width: 100%;
-  max-width: 1200px;
+  height: 70px;
+  padding: 0 40px;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #f0f0f0;
+
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.nav-logo {
+  margin-right: auto;
 }
 
 .nav-logo img {
@@ -432,49 +446,85 @@
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 40px;
+
+  margin-left: auto;
+  margin-right: 30px;
 }
 
 .nav-links span {
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
+  font-size: 18px;
+  color: #111;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .nav-links span:hover {
-  color: #ff4d4d;
+  color: #000;
 }
+
 
 .nav-buttons {
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 
+.nav-btn-login,
+.nav-btn-register,
+.login-btn,
+.register-btn,
+.offer-info-btn,
+.profile-edit-btn,
+.profile-logout-btn,
+.search-action-btn,
+.attractions-special-btn,
+.attractions-reserve-btn {
+  height: 42px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  border-radius: 8px;
+
+  white-space: nowrap;
+}
+
 .nav-btn-login {
-  background: transparent;
-  border: 1px solid #ccc;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 13px;
+  background: white;
+  color: #111;
+  border: 1px solid #dcdcdc;
 }
 
 .nav-btn-register {
-  background: #ffffff;
-  color: #fff;
+  background: #111;
+  color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
+}
+
+button {
   cursor: pointer;
-  font-size: 13px;
+  transition: 0.2s;
+  border-radius: 10px;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 /* NASLOV I PODNASLOV SEKCIJA */
 .search-header {
   text-align: left;
   width: 100%;
-  max-width: 900px;
+  width: 100%;
+max-width: 1200px;
   margin-top: 40px;
   margin-bottom: 30px;
 }
@@ -544,19 +594,9 @@
   outline: none;
   box-sizing: border-box;
   text-align: center;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+  box-shadow: none;
 }
 
-/* GRAFIČKI ELEMENTI */
-.side-graphic-left .flying-plane {
-  width: 100px;
-  height: auto;
-}
-
-.side-graphic-right .polaroid-img {
-  width: 120px;
-  height: auto;
-}
 
 /* SEKCIJA SA KALENDARIMA */
 .calendars-section {
@@ -565,7 +605,8 @@
   gap: 120px;
   margin-top: 40px;
   width: 100%;
-  max-width: 900px;
+ width: 100%;
+max-width: 1200px;
 }
 
 .calendar-block {
@@ -589,7 +630,7 @@
   width: 250px;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+box-shadow: none;
 }
 
 /* AKCIONA DUGMAD */
@@ -847,7 +888,8 @@
   margin-top: 40px;
   margin-bottom: 30px;
   width: 100%;
-  max-width: 900px;
+ width: 100%;
+max-width: 1200px;
 }
 
 .offers-main-title {
@@ -867,7 +909,8 @@
 /* KONTEJNER ZA MREŽU KARTICA */
 .offers-container {
   width: 100%;
-  max-width: 900px;
+width: 100%;
+max-width: 1200px;
   text-align: left;
 }
 
@@ -900,7 +943,7 @@
   height: 250px;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+ box-shadow: none;
   margin-bottom: 15px;
 }
 
@@ -970,7 +1013,7 @@
 }
 
 .offers-load-more-btn {
-  background-color: #5d4da8; /* Nežna ljubičasta nijansa sa slike */
+  background-color: #111; /* Nežna ljubičasta nijansa sa slike */
   color: #ffffff;
   border: none;
   border-radius: 20px;
@@ -1045,16 +1088,6 @@
   margin: 0;
 }
 
-/* Zakrivljeni, rukom pisani tekst sa slike */
-.slanted-text {
-  font-size: 14px;
-  font-weight: bold;
-  color: #111;
-  transform: rotate(-4deg);
-  position: absolute;
-  right: 180px;
-  bottom: -20px;
-}
 
 /* STRUKTURA KARTICA SA INPUTIMA */
 .attractions-form-wrapper {
@@ -1071,7 +1104,7 @@
   border: 1px solid #f0f0f0;
   border-radius: 16px;
   padding: 30px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
+box-shadow: none;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -1148,7 +1181,7 @@
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  box-shadow: none;
   transition: background-color 0.2s;
 }
 
@@ -1158,7 +1191,7 @@
 
 /* Ljubičasto dugme na dnu */
 .attractions-special-btn {
-  background-color: #5d4da8; /* Ista ljubičasta sa prethodnog Offers ekrana */
+  background-color: #111; /* Ista ljubičasta sa prethodnog Offers ekrana */
   color: #ffffff;
   border: none;
   border-radius: 20px;
@@ -1179,11 +1212,7 @@
     flex-direction: column;
     padding: 0 20px;
   }
-  .slanted-text {
-    position: static;
-    margin-top: 10px;
-    text-align: center;
-  }
+
   .attractions-header {
     padding: 0 20px;
   }
@@ -1210,21 +1239,19 @@
   margin-top: 40px;
   margin-bottom: 40px;
   width: 100%;
-  max-width: 900px;
+ width: 100%;
+max-width: 1200px;
 }
 
 .reviews-main-title {
-  font-size: 42px;
-  font-weight: bold;
-  color: #111;
-  margin: 0 0 5px 0;
+  font-size: 56px;
+  line-height: 1.1;
+  margin-bottom: 12px;
 }
 
 .reviews-subtitle {
-  font-size: 15px;
-  color: #444;
-  margin: 0;
-  font-weight: 500;
+  font-size: 18px;
+  color: #666;
 }
 
 /* KONTEJNER ZA SVE RECENZIJE */
@@ -1267,24 +1294,19 @@
   gap: 4px;
 }
 
-.review-stars {
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
 .review-text {
-  font-size: 14px;
+  font-size: 18px;
+  line-height: 1.8;
   color: #111;
-  line-height: 1.5;
-  margin: 0;
 }
 
 .review-author {
-  font-weight: 500;
-  color: #444;
-  white-space: nowrap;
+  font-size: 17px;
 }
 
+.review-stars {
+  font-size: 18px;
+}
 /* KARTICA ZA UNOS NOVE RECENZIJE */
 .share-experience-card {
   width: 100%;
@@ -1293,7 +1315,7 @@
   border: 1px solid #ececec;
   border-radius: 16px;
   padding: 20px 25px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.015);
+ box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1357,4 +1379,16 @@
   .review-row-item {
     gap: 15px;
   }
+}
+
+.login-page,
+.register-page,
+.search-page,
+.profile-page,
+.offers-page,
+.attractions-page,
+.reviews-page {
+  background: white;
+  min-height: 100vh;
+  width: 100%;
 }

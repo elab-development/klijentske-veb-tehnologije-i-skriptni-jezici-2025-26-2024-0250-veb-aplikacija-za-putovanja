@@ -33,7 +33,7 @@ const Search = () => {
                 
                 {/* Avion sa leve strane */}
                 <div className="side-graphic-left">
-                    <img src="/avion-crveni.png" alt="Avion" className="flying-plane" />
+                    <img src="/slike/image7.png" alt="Avion" className="flying-plane" />
                 </div>
 
                 {/* Središnji deo: Input polja raspoređena po redovima */}
@@ -91,7 +91,7 @@ const Search = () => {
 
                 {/* Polaroid sličice sa desne strane */}
                 <div className="side-graphic-right">
-                    <img src="/polaroid-slike.png" alt="Slike" className="polaroid-img" />
+                    <img src="/slike/image8.png" alt="Slike" className="polaroid-img" />
                 </div>
 
             </div>
@@ -103,7 +103,7 @@ const Search = () => {
                 <div className="calendar-block">
                     <span className="calendar-label-btn">Datum polaska</span>
                     <div className="mock-calendar-box">
-                        <img src="/calendar-mock.png" alt="Kalendar odlazak" />
+                        <img src="/slike/image9.png" alt="Kalendar odlazak" />
                     </div>
                     <button className="search-action-btn main-search-btn" onClick={() => navigate('/offers')}>
                         Pretraži
@@ -114,7 +114,7 @@ const Search = () => {
                 <div className="calendar-block">
                     <span className="calendar-label-btn">Datum odlaska</span>
                     <div className="mock-calendar-box">
-                        <img src="/calendar-mock.png" alt="Kalendar povratak" />
+                        <img src="/slike/image9.png" alt="Kalendar povratak" />
                     </div>
                     <button className="search-action-btn attraction-search-btn" onClick={() => navigate('/attractions')}>
                         Pretraži atrakcije grada

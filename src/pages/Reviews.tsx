@@ -47,7 +47,7 @@ const Reviews = () => {
                 {reviews.map((r, index) => (
                     <div key={r.id} className="review-row-item">
                         <div className="review-avatar-box">
-                            <img src={`/avatar${index + 1}.png`} alt={r.ime} />
+                            <img src={`slike/image.png`} alt={r.ime} />
                         </div>
                         
                         <div className="review-content-box">
@@ -65,7 +65,7 @@ const Reviews = () => {
                 <div className="share-stars">☆☆☆☆☆</div>
                 <div className="share-input-row">
                     <div className="share-user-avatar">
-                        <img src="/user-logged.png" alt="Korisnik" />
+                        <img src="/slike/image2.png" alt="Korisnik" />
                     </div>
                     <input 
                         type="text" 
