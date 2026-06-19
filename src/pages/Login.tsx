@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import InputField from "../components/InputField";
+import CustomButton from "../components/CustomButton";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -26,7 +29,8 @@ const Login = () => {
           najzanimljivijih atrakcija u gradu.
         </div>
 
-        <input
+        <InputField
+          containerClassName="w-full"
           className="login-input"
           type="email"
           placeholder="Email"
@@ -34,33 +38,34 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <input
+        <InputField
+          containerClassName="w-full"
           className="login-input"
           type="password"
           placeholder="Lozinka"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <p className="login-forgot">
           Zaboravljena lozinka?
         </p>
 
-        <button
+        <CustomButton
           className="login-btn"
+          text="Prijavi se"
           onClick={() => navigate("/search")}
-        >
-          Prijavi se
-        </button>
+        />
 
         <p className="login-register-text">
           Nemate nalog?
         </p>
 
-        <button
+        <CustomButton
           className="login-register-btn"
+          text="Registruj se"
           onClick={() => navigate("/register")}
-        >
-          Registruj se
-        </button>
+        />
       </div>
 
       <div className="login-footer">

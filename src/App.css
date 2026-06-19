@@ -1,1394 +1,1302 @@
-/* ================= LOGIN ================= */
-
-img {
-  display: block;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100vh;
-  background: #fff;
-  color: #111;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  overflow-x: hidden;
-   margin: 0;
-  font-family: Arial, sans-serif;
-  color: #111;
-  background: #fff;
-}
-.login-page {
-  min-height: 100vh;
-  background: #fafafa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-}
-
-.login-logo {
-  width: 70px;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.login-title {
-  margin: 0;
-  font-size: 42px;
-  font-weight: 500;
-  color: #4b4b4b;
-}
-
-.login-subtitle {
-  margin-top: 5px;
-  margin-bottom: 30px;
-  color: #666;
-  font-size: 14px;
-}
-
-.login-form {
-  width: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-welcome {
-  width: 100%;
-  background: #f0eaff;
-  border: 2px solid #9f7aea;
-  border-radius: 6px;
-  padding: 10px;
-  margin-bottom: 18px;
-  font-size: 11px;
-  color: #444;
-  text-align: left;
-  line-height: 1.5;
-}
-
-.login-input {
-  width: 100%;
-  height: 40px;
-  border: 1px solid #dcdcdc;
-  border-radius: 6px;
-  padding: 0 12px;
-  margin-bottom: 12px;
-  background: white;
-  font-size: 14px;
-}
-
-.login-input:focus {
-  outline: none;
-  border-color: #ff4d4d;
-}
-
-.login-forgot {
-  width: 100%;
-  text-align: right;
-  font-size: 12px;
-  color: #555;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
-.login-btn {
-  background: #444;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 28px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.login-btn:hover {
-  background: #2f2f2f;
-}
-
-.login-register-text {
-  margin-top: 20px;
-  margin-bottom: 8px;
-  color: #555;
-  font-size: 13px;
-}
-
-.login-register-btn {
-  background: white;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-  padding: 10px 28px;
-  cursor: pointer;
-  color: #444;
-  transition: 0.2s;
-}
-
-.login-register-btn:hover {
-  background: #f5f5f5;
-}
-
-.login-footer {
-  width: 80%;
- width: 100%;
-max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 100px;
-  padding-bottom: 40px;
-  color: #444;
-}
-
-.login-footer h4 {
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.login-footer p {
-  margin: 0 0 10px;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .login-form {
-    width: 90%;
-  }
-
-  .login-footer {
-    flex-direction: column;
-    gap: 25px;
-    text-align: center;
-    margin-top: 60px;
-  }
-}
-
-/* Osnovni stilovi stranice */
-.register-page {
-  font-family: 'Arial', sans-serif;
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 40px 20px;
-  box-sizing: border-box;
-}
-
-/* Logo u gornjem levom uglu */
-.register-top-left {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-}
-
-.register-mini-logo {
-  width: 55px;
-  height: auto;
-}
-
-/* Naslovna sekcija */
-.register-header {
-  text-align: center;
-  margin-bottom: 45px;
-}
-
-.register-title {
-  font-size: 26px;
-  font-weight: 500;
-  color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 6px;
-}
-
-.user-icon {
-  font-size: 24px;
-  color: #333;
-}
-
-.register-subtitle {
-  font-size: 13px;
-  color: #444;
-  margin: 0;
-}
-
-/* Glavna forma (Kontejner za levu i desnu stranu) */
-.register-form {
-  display: flex;
-  width: 100%;
-  max-width: 820px;
-  gap: 60px;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-/* Zajednički stilovi za INPUT polja */
-.register-form input[type="text"],
-.register-form input[type="email"],
-.register-form input[type="password"] {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1px solid #e2e2e2;
-  border-radius: 12px; /* Zaobljene ivice sa slike */
-  box-sizing: border-box;
-  font-size: 14px;
-  outline: none;
-  background-color: #fff;
-}
-
-/* LEVA STRANA - Lični podaci */
-.register-left-side {
-  flex: 1.1;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-/* Redovi u kojima stoje po dva inputa */
-.register-row-group {
-  display: flex;
-  gap: 16px;
-}
-
-.input-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.input-box label {
-  font-size: 13px;
-  color: #444;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.doc-icon {
-  font-size: 14px;
-}
-
-/* Datum rođenja sekcija */
-.date-section {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.date-label {
-  font-size: 13px;
-  color: #444;
-  font-weight: 500;
-}
-
-.date-row {
-  display: flex;
-  gap: 10px;
-}
-
-.date-row input {
-  width: 65px !important;
-  text-align: center;
-}
-
-.date-row input:last-child {
-  width: 85px !important; /* Šire polje za YYYY (godinu) */
-}
-
-/* DESNA STRANA - Uokvirena kartica */
-.register-right-card {
-  flex: 0.9;
-  background-color: #ffffff;
-  border: 1px solid #ececec;
-  border-radius: 16px;
-  padding: 35px 28px;
- box-shadow: none;
-  position: relative; /* Neophodno da bi se pečat pozicionirao u odnosu na karticu */
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  width: 100%;
-  max-width: 360px;
-}
-
-.card-input-box {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.card-input-box label {
-  font-size: 13px;
-  color: #444;
-}
-
-/* Dugme za registraciju */
-.register-btn {
-  background-color: #1e1e1e; /* Tamna boja dugmeta */
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 5px;
-}
-
-.register-btn:hover {
-  background-color: #333333;
-}
-
-
-.terms-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 13px;
-  color: #222;
-  margin-top: 4px;
-}
-
-.terms-box input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  accent-color: #1e1e1e;
-}
-
-
-
-
-
-.register-footer-security {
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #555;
-  font-size: 13px;
-}
-
-.shield-icon {
-  font-size: 16px;
-}
-
-/* Prilagođavanje za ekrane mobilnih telefona */
-@media (max-width: 768px) {
-  .register-form {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-  }
-  
-  .register-left-side, 
-  .register-right-card {
-    width: 100%;
-    max-width: 100%;
-  }
-
- 
-  
-  .register-top-left {
-    position: static;
-    margin-bottom: 20px;
-  }
-}
-
-.search-page {
-  font-family: 'Arial', sans-serif;
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  padding-bottom: 60px;
-}
-
-.search-navbar {
-  width: 100%;
-  height: 70px;
-  padding: 0 40px;
-
-  display: flex;
-  align-items: center;
-
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.nav-logo {
-  margin-right: auto;
-}
-
-.nav-logo img {
-  height: 45px;
-  width: auto;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-
-  margin-left: auto;
-  margin-right: 30px;
-}
-
-.nav-links span {
-  font-size: 18px;
-  color: #111;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.nav-links span:hover {
-  color: #000;
-}
-
-
-.nav-buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.nav-btn-login,
-.nav-btn-register,
-.login-btn,
-.register-btn,
-.offer-info-btn,
-.profile-edit-btn,
-.profile-logout-btn,
-.search-action-btn,
-.attractions-special-btn,
-.attractions-reserve-btn {
-  height: 42px;
-
-  padding: 0 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  border-radius: 8px;
-
-  white-space: nowrap;
-}
-
-.nav-btn-login {
-  background: white;
-  color: #111;
-  border: 1px solid #dcdcdc;
-}
-
-.nav-btn-register {
-  background: #111;
-  color: white;
-  border: none;
-}
-
-button {
-  cursor: pointer;
-  transition: 0.2s;
-  border-radius: 10px;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* NASLOV I PODNASLOV SEKCIJA */
-.search-header {
-  text-align: left;
-  width: 100%;
-  width: 100%;
-max-width: 1200px;
-  margin-top: 40px;
-  margin-bottom: 30px;
-}
-
-.search-header h2 {
-  font-size: 28px;
-  margin: 0 0 8px 0;
-  font-weight: bold;
-}
-
-.search-header p {
-  font-size: 14px;
-  color: #ffffff;
-  margin: 0;
-}
-
-/* BLOK SA INPUTIMA (MREŽA) */
-.search-content-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1100px;
-  gap: 20px;
-}
-
-.search-inputs-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 750px;
-}
-
-.search-row {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-}
-
-.dynamic-row-2 {
-  justify-content: center;
-  padding: 0 80px; /* Centriranje i sužavanje drugog reda sa slike */
-  box-sizing: border-box;
-}
-
-.search-input-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.search-input-box label {
-  font-size: 13px;
-  color: #444;
-  font-weight: 500;
-  text-align: center;
-}
-
-.search-input-box input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #e2e2e2;
-  border-radius: 12px;
-  font-size: 14px;
-  outline: none;
-  box-sizing: border-box;
-  text-align: center;
-  box-shadow: none;
-}
-
-
-/* SEKCIJA SA KALENDARIMA */
-.calendars-section {
-  display: flex;
-  justify-content: center;
-  gap: 120px;
-  margin-top: 40px;
-  width: 100%;
- width: 100%;
-max-width: 1200px;
-}
-
-.calendar-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.calendar-label-btn {
-  background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
-  padding: 6px 16px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #333;
-}
-
-.mock-calendar-box img {
-  width: 250px;
-  height: auto;
-  border-radius: 12px;
-box-shadow: none;
-}
-
-/* AKCIONA DUGMAD */
-.search-action-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 12px 30px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
-  cursor: pointer;
-  width: 220px;
-  transition: background-color 0.2s;
-}
-
-.main-search-btn {
-  background-color: #1e1e1e;
-}
-
-.main-search-btn:hover {
-  background-color: #333333;
-}
-
-.attraction-search-btn {
-  background-color: #222222;
-}
-
-.attraction-search-btn:hover {
-  background-color: #444444;
-}
-
 /* ==========================================================================
-   STILOVI ZA PROFILE STRANICU (Srpski putnik)
+   GOOGLE FONTS IMPORT
+   Swiss Travel & Luxury Editorial Vibe: 
+   Playfair Display (Serif headings) + Plus Jakarta Sans (UI body & actions) + JetBrains Mono
    ========================================================================== */
-
-.profile-page {
-  font-family: 'Arial', sans-serif;
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  padding-bottom: 80px;
-  position: relative;
-}
-
-/* KONTEJNER ZA GORNJI DEO PROFILA */
-.profile-container {
-  display: flex;
-  width: 100%;
-  max-width: 950px;
-  margin-top: 50px;
-  gap: 60px;
-  align-items: flex-start;
-}
-
-/* LEVA HERO KOLONA (NASLOV I IKONA) */
-.profile-left-hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 150px;
-}
-
-.profile-main-title {
-  font-size: 36px;
-  font-weight: bold;
-  color: #111;
-  margin: 0 0 20px 0;
-  align-self: flex-start;
-}
-
-.profile-avatar-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-avatar-icon {
-  font-size: 100px; /* Velika ikona sa slike */
-  color: #1e1e1e;
-  line-height: 1;
-}
-
-/* WRAPPER ZA PODATKE U VREĆI */
-.profile-data-wrapper {
-  flex: 1;
-  display: flex;
-  gap: 50px;
-}
-
-.profile-data-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.profile-data-column h3 {
-  font-size: 14px;
-  color: #444;
-  font-weight: 500;
-  margin: 0 0 5px 0;
-}
-
-.card-title-margin {
-  margin-top: 25px !important;
-}
-
-/* POLJA ZA PRIKAZ PODATAKA (IZGLEDAJU KAO INPUTI SA SLIKE) */
-.profile-info-field {
-  width: 100%;
-  padding: 11px 16px;
-  border: 1px solid #e2e2e2;
-  border-radius: 12px;
-  font-size: 14px;
-  color: #222;
-  background-color: #ffffff;
-  box-sizing: border-box;
-  min-height: 43px;
-  display: flex;
-  align-items: center;
-}
-
-.email-field {
-  color: #555;
-}
-
-.profile-reg-date {
-  font-size: 14px;
-  font-weight: bold;
-  color: #111;
-  margin: 5px 0 0 0;
-}
-
-/* WISHLIST SEKCIJA */
-.wishlist-section {
-  width: 100%;
-  max-width: 950px;
-  margin-top: 40px;
-  text-align: left;
-}
-
-.wishlist-section h2 {
-  font-size: 32px;
-  font-weight: bold;
-  color: #111;
-  margin: 0 0 5px 0;
-}
-
-.wishlist-subtitle {
-  font-size: 14px;
-  color: #555;
-  margin: 0 0 15px 0;
-}
-
-.wishlist-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.wishlist-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  color: #222;
-}
-
-.heart-icon {
-  font-size: 18px;
-  color: #222;
-  cursor: pointer;
-}
-
-/* DUGMIĆI NA DNU DESNO */
-.profile-footer-buttons {
-  width: 100%;
-  max-width: 950px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-  margin-top: 40px;
-}
-
-.profile-edit-btn {
-  background-color: transparent;
-  color: #1e1e1e;
-  border: 1px solid #e2e2e2;
-  border-radius: 20px;
-  padding: 10px 24px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.profile-edit-btn:hover {
-  background-color: #f9f9f9;
-}
-
-.profile-logout-btn {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 24px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.profile-logout-btn:hover {
-  background-color: #333333;
-}
-
-/* RESPONSIVE POPRAVKA AKO SE SMANJI EKRAN */
-@media (max-width: 768px) {
-  .profile-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-  .profile-data-wrapper {
-    width: 100%;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .profile-footer-buttons {
-    justify-content: center;
-  }
-}
-
-/* ==========================================================================
-   STILOVI ZA OFFERS STRANICU (Srpski putnik)
-   ========================================================================== */
-
-.offers-page {
-  font-family: 'Arial', sans-serif;
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  padding-bottom: 60px;
-}
-
-/* HEADER DELOVI */
-.offers-header {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
-  width: 100%;
- width: 100%;
-max-width: 1200px;
-}
-
-.offers-main-title {
-  font-size: 42px;
-  font-weight: bold;
-  color: #111;
-  margin: 0 0 5px 0;
-}
-
-.offers-subtitle {
-  font-size: 15px;
-  color: #444;
-  margin: 0;
-  font-weight: 500;
-}
-
-/* KONTEJNER ZA MREŽU KARTICA */
-.offers-container {
-  width: 100%;
-width: 100%;
-max-width: 1200px;
-  text-align: left;
-}
-
-.offers-section-title {
-  font-size: 15px;
-  color: #111;
-  font-weight: bold;
-  margin: 0 0 25px 0;
-}
-
-/* KREIRANJE REDA SA KARTICAMA */
-.offers-grid {
-  display: flex;
-  gap: 50px;
-  justify-content: center;
-  width: 100%;
-}
-
-/* INDIVIDUALNA KARTICA */
-.offer-card {
-  flex: 1;
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* KUTIJA ZA SLIKU SA ZAOBLJENIM IVICAMA */
-.offer-image-box {
-  width: 100%;
-  height: 250px;
-  border-radius: 14px;
-  overflow: hidden;
- box-shadow: none;
-  margin-bottom: 15px;
-}
-
-.offer-image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* TEKSTUALNI OPIS */
-.offer-description {
-  font-size: 14px;
-  color: #111;
-  line-height: 1.5;
-  margin: 0 0 20px 0;
-  min-height: 63px; /* Osigurava da su kartice poravnate ako je opis kraći/duži */
-}
-
-/* DONJI RED KARTICE (CENA I DUGME) */
-.offer-footer-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-}
-
-.offer-price {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-}
-
-.price-label {
-  font-size: 14px;
-  color: #555;
-}
-
-.price-amount {
-  font-size: 32px;
-  font-weight: bold;
-  color: #111;
-}
-
-/* CRNO DUGME NA KARTICI */
-.offer-info-btn {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 18px;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.offer-info-btn:hover {
-  background-color: #444444;
-}
-
-/* LJUBIČASTO DUGME NA SAMOM DNU */
-.offers-load-more-container {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.offers-load-more-btn {
-  background-color: #111; /* Nežna ljubičasta nijansa sa slike */
-  color: #ffffff;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 24px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background-color 0.2s;
-}
-
-.offers-load-more-btn:hover {
-  background-color: #4b3d8f;
-}
-
-.arrow-icon {
-  font-size: 14px;
-}
-
-/* Prilagođavanje za manje ekrane */
-@media (max-width: 768px) {
-  .offers-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-  }
-  .offers-header {
-    padding: 0 20px;
-  }
-  .offers-container {
-    padding: 0 20px;
-  }
-}
-
-/* ==========================================================================
-   STILOVI ZA ATRAKCIJE STRANICU (Srpski putnik)
-   ========================================================================== */
-
-.attractions-page {
-  font-family: 'Arial', sans-serif;
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  padding-bottom: 60px;
-}
-
-/* NASLOVI I PODNASLOVI */
-.attractions-header {
-  text-align: left;
-  width: 100%;
-  max-width: 850px;
-  margin-top: 40px;
-  margin-bottom: 25px;
-  position: relative;
-}
-
-.attractions-header h2 {
-  font-size: 32px;
-  font-weight: bold;
-  color: #111;
-  margin: 0 0 6px 0;
-}
-
-.attractions-subtitle {
-  font-size: 14px;
-  color: #555;
-  margin: 0;
-}
-
-
-/* STRUKTURA KARTICA SA INPUTIMA */
-.attractions-form-wrapper {
-  display: flex;
-  width: 100%;
-  max-width: 850px;
-  gap: 40px;
-  margin-top: 25px;
-}
-
-.attractions-card {
-  flex: 1;
-  background-color: #ffffff;
-  border: 1px solid #f0f0f0;
-  border-radius: 16px;
-  padding: 30px;
-box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  box-sizing: border-box;
-}
-
-.right-card-align {
-  justify-content: flex-start;
-  height: max-content;
-}
-
-/* INPUTI, LABELI I SELEKTI */
-.attractions-input-box {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.attractions-input-box label {
-  font-size: 13px;
-  color: #111;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.attractions-input-box input,
-.attractions-input-box select {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1px solid #e2e2e2;
-  border-radius: 12px;
-  font-size: 14px;
-  color: #222;
-  outline: none;
-  background-color: #ffffff;
-  box-sizing: border-box;
-}
-
-/* Specifičan izgled za zaključana (disabled) polja sa slike */
-.disabled-input {
-  background-color: #ffffff !important;
-  color: #b5b5b5 !important;
-  border: 1px solid #e8e8e8 !important;
-}
-
-.disabled-select {
-  background-color: #ffffff !important;
-  color: #222 !important;
-}
-
-.people-icon {
-  font-size: 14px;
-}
-
-/* DUGMIĆI NA DNU PANELA */
-.attractions-footer-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-top: 40px;
-  width: 100%;
-}
-
-/* Belo/sivo uokvireno dugme Rezerviši */
-.attractions-reserve-btn {
-  background-color: #ffffff;
-  color: #333333;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 8px 30px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: none;
-  transition: background-color 0.2s;
-}
-
-.attractions-reserve-btn:hover {
-  background-color: #f9f9f9;
-}
-
-/* Ljubičasto dugme na dnu */
-.attractions-special-btn {
-  background-color: #111; /* Ista ljubičasta sa prethodnog Offers ekrana */
-  color: #ffffff;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 24px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.attractions-special-btn:hover {
-  background-color: #4b3d8f;
-}
-
-/* Prilagođavanje za telefone */
-@media (max-width: 768px) {
-  .attractions-form-wrapper {
-    flex-direction: column;
-    padding: 0 20px;
-  }
-
-  .attractions-header {
-    padding: 0 20px;
-  }
-}
-
-/* ==========================================================================
-   STILOVI ZA REVIEWS STRANICU (Srpski putnik)
-   ========================================================================== */
-
-.reviews-page {
-  font-family: 'Arial', sans-serif;
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  padding-bottom: 80px;
-}
-
-/* HEADER SEKCIJA */
-.reviews-header {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  width: 100%;
- width: 100%;
-max-width: 1200px;
-}
-
-.reviews-main-title {
-  font-size: 56px;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.reviews-subtitle {
-  font-size: 18px;
-  color: #666;
-}
-
-/* KONTEJNER ZA SVE RECENZIJE */
-.reviews-container {
-  width: 100%;
-  max-width: 750px;
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-  margin-bottom: 50px;
-}
-
-/* JEDAN RED: AVATAR + TEKST */
-.review-row-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  width: 100%;
-}
-
-/* OKRUGLI BOX ZA SLIKU KLIJENTA */
-.review-avatar-box {
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.review-avatar-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* TEKSTUALNI DEO RECENZIJE */
-.review-content-box {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.review-text {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #111;
-}
-
-.review-author {
-  font-size: 17px;
-}
-
-.review-stars {
-  font-size: 18px;
-}
-/* KARTICA ZA UNOS NOVE RECENZIJE */
-.share-experience-card {
-  width: 100%;
-  max-width: 360px;
-  background-color: #ffffff;
-  border: 1px solid #ececec;
-  border-radius: 16px;
-  padding: 20px 25px;
- box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  box-sizing: border-box;
-}
-
-.share-experience-card h3 {
-  font-size: 16px;
-  font-weight: bold;
-  color: #111;
-  margin: 0;
-}
-
-.share-stars {
-  font-size: 18px;
-  color: #111;
-  letter-spacing: 3px;
-  cursor: pointer;
-}
-
-/* RED SA AVATAROM I INPUT POLJEM */
-.share-input-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  margin-top: 5px;
-}
-
-.share-user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.share-user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.share-input-row input {
-  flex: 1;
-  padding: 8px 12px;
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  font-size: 14px;
-  outline: none;
-  background-color: #ffffff;
-  box-sizing: border-box;
-}
-
-/* Prilagođavanje za manje ekrane */
-@media (max-width: 768px) {
-  .reviews-container, .reviews-header {
-    padding: 0 20px;
-  }
-  .review-row-item {
-    gap: 15px;
-  }
-}
-
-.login-page,
-.register-page,
-.search-page,
-.profile-page,
-.offers-page,
-.attractions-page,
-.reviews-page {
-  background: white;
-  min-height: 100vh;
-  width: 100%;
-}
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+   /* ==========================================================================
+      GLOBAL RESET & FONTS DEFINE
+      ========================================================================== */
+   * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   body {
+     margin: 0;
+     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, inherit;
+     background-color: #fcfbf9; /* Soft off-white for a cleaner, premium brand backdrop */
+     color: #1a1a1a;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+   }
+   
+   img {
+     display: block;
+     max-width: 100%;
+   }
+   
+   button {
+     font-family: 'Plus Jakarta Sans', sans-serif;
+     cursor: pointer;
+     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+     border: none;
+     outline: none;
+   }
+   
+   button:hover {
+     transform: translateY(-1px);
+   }
+   
+   button:active {
+     transform: translateY(0.5px);
+   }
+   
+   /* ==========================================================================
+      SHARED DESIGN ELEMENTS & HELPER COMPONENTS (3. Zahtev podloga)
+      ========================================================================== */
+   .search-input-box, .input-box, .card-input-box, .attractions-input-box {
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     width: 100%;
+   }
+   
+   input[type="text"],
+   input[type="email"],
+   input[type="password"],
+   select {
+     font-family: 'Plus Jakarta Sans', sans-serif;
+     height: 46px;
+     width: 100%;
+     padding: 12px 16px;
+     background-color: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 12px;
+     font-size: 14px;
+     font-weight: 500;
+     color: #1e1e1e;
+     outline: none;
+     transition: all 0.25s ease-in-out;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01) inset;
+   }
+   
+   input[type="text"]:focus,
+   input[type="email"]:focus,
+   input[type="password"]:focus,
+   select:focus {
+     border-color: #cf4638; /* Elegant warm terracotta accent border on focus */
+     background-color: #ffffff;
+     box-shadow: 0 0 0 4px rgba(207, 70, 56, 0.1);
+   }
+   
+   label {
+     font-size: 13px;
+     color: #55534e;
+     font-weight: 600;
+     letter-spacing: 0.2px;
+   }
+   
+   /* ==========================================================================
+      NAVIGATION BAR (Sleek Horizontal Header)
+      ========================================================================== */
+   .search-navbar {
+     width: 100%;
+     max-width: 1300px;
+     height: 85px;
+     margin: 0 auto;
+     padding: 0 40px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     background: transparent;
+     border-bottom: 1.5px solid #e8e6e1;
+   }
+   
+   .nav-logo {
+     display: flex;
+     align-items: center;
+   }
+   
+   .nav-logo img {
+     height: 48px;
+     width: auto;
+     object-fit: contain;
+   }
+   
+   .nav-links {
+     display: flex;
+     align-items: center;
+     gap: 36px;
+   }
+   
+   .nav-links span {
+     font-size: 15px;
+     color: #55534e;
+     font-weight: 600;
+     cursor: pointer;
+     position: relative;
+     padding: 8px 0;
+     transition: color 0.25s ease;
+   }
+   
+   .nav-links span::after {
+     content: '';
+     position: absolute;
+     width: 100%;
+     transform: scaleX(0);
+     height: 2px;
+     bottom: 0;
+     left: 0;
+     background-color: #cf4638;
+     transform-origin: bottom right;
+     transition: transform 0.25s ease-out;
+   }
+   
+   .nav-links span:hover {
+     color: #cf4638;
+   }
+   
+   .nav-links span:hover::after {
+     transform: scaleX(1);
+     transform-origin: bottom left;
+   }
+   
+   .nav-buttons {
+     display: flex;
+     align-items: center;
+     gap: 16px;
+   }
+   
+   .nav-btn-login {
+     background: transparent;
+     color: #1e1e1e;
+     border: 1.5px solid #1e1e1e;
+     border-radius: 20px;
+     font-weight: 600;
+     font-size: 13.5px;
+     padding: 8px 20px;
+     height: auto;
+   }
+   
+   .nav-btn-login:hover {
+     background: #1e1e1e;
+     color: #ffffff;
+   }
+   
+   .nav-btn-register {
+     background: #cf4638;
+     color: #ffffff;
+     border: none;
+     border-radius: 20px;
+     font-weight: 600;
+     font-size: 13.5px;
+     padding: 9.5px 20px;
+     height: auto;
+   }
+   
+   .nav-btn-register:hover {
+     background: #b5382b;
+     box-shadow: 0 4px 12px rgba(207, 70, 56, 0.25);
+   }
+   
+   /* ==========================================================================
+      LOGIN PAGE (Aesthetic Landing Page)
+      ========================================================================== */
+   .login-page {
+     min-height: 100vh;
+     background: radial-gradient(circle at top left, #fdfbf7, #f7f3eb);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     padding: 80px 20px;
+   }
+   
+   .login-logo {
+     width: 90px;
+     height: auto;
+     margin-bottom: 24px;
+     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.05));
+   }
+   
+   .login-title {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 50px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 8px;
+     letter-spacing: -0.5px;
+     text-align: center;
+   }
+   
+   .login-subtitle {
+     color: #6e6b64;
+     font-size: 16px;
+     font-weight: 500;
+     margin-bottom: 40px;
+     text-align: center;
+   }
+   
+   .login-form {
+     background: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 24px;
+     box-shadow: 0 12px 40px -15px rgba(0,0,0,0.03);
+     width: 400px;
+     max-width: 100%;
+     padding: 40px 35px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+   }
+   
+   /* Notice box for premium guidelines */
+   .login-welcome {
+     width: 100%;
+     background: #fdf3f0;
+     border-left: 4px solid #cf4638;
+     border-radius: 8px;
+     padding: 14px 16px;
+     margin-bottom: 24px;
+     font-size: 12.5px;
+     color: #822e25;
+     font-weight: 500;
+     line-height: 1.6;
+   }
+   
+   .login-input {
+     width: 100%;
+     margin-bottom: 16px;
+   }
+   
+   .login-forgot {
+     width: 100%;
+     text-align: right;
+     font-size: 13px;
+     font-weight: 600;
+     color: #6e6b64;
+     margin-bottom: 24px;
+     cursor: pointer;
+     transition: color 0.2s;
+   }
+   
+   .login-forgot:hover {
+     color: #cf4638;
+   }
+   
+   .login-btn {
+     background: #1e1e1e;
+     color: #ffffff;
+     border: none;
+     font-weight: bold;
+     font-size: 15px;
+     letter-spacing: 0.2px;
+     height: 48px;
+     border-radius: 12px;
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .login-btn:hover {
+     background: #cf4638;
+     box-shadow: 0 4px 15px rgba(207, 70, 56, 0.2);
+   }
+   
+   .login-register-text {
+     margin-top: 28px;
+     margin-bottom: 12px;
+     color: #6e6b64;
+     font-size: 14px;
+     font-weight: 500;
+   }
+   
+   .login-register-btn {
+     background: transparent;
+     border: 1.5px solid #eae8e4;
+     color: #1e1e1e;
+     font-weight: bold;
+     font-size: 14px;
+     height: 46px;
+     border-radius: 12px;
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .login-register-btn:hover {
+     border-color: #1e1e1e;
+     background-color: #faf9f6;
+   }
+   
+   .login-footer {
+     width: 100%;
+     max-width: 1100px;
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 40px;
+     margin-top: 100px;
+     border-top: 1.5px solid #eae8e4;
+     padding-top: 40px;
+   }
+   
+   .login-footer div {
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .login-footer h4 {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 18px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 14px;
+   }
+   
+   .login-footer p {
+     color: #6e6b64;
+     font-size: 13px;
+     line-height: 1.6;
+   }
+   
+   /* ==========================================================================
+      REGISTER PAGE (Passport/Luggage Double-Card Layout)
+      ========================================================================== */
+   .register-page {
+     background: linear-gradient(to bottom, #faf8f5, #f5f1e8);
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+     items-align: center;
+     justify-content: center;
+     position: relative;
+     padding: 60px 20px;
+   }
+   
+   .register-top-left {
+     position: absolute;
+     top: 30px;
+     left: 40px;
+   }
+   
+   .register-mini-logo {
+     height: 52px;
+     width: auto;
+   }
+   
+   .register-header {
+     text-align: center;
+     margin-bottom: 45px;
+   }
+   
+   .register-title {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 38px;
+     font-weight: 700;
+     color: #1e1e1e;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 12px;
+     margin-bottom: 8px;
+   }
+   
+   .user-icon {
+     font-size: 30px;
+     color: #cf4638;
+   }
+   
+   .register-subtitle {
+     font-size: 15px;
+     color: #55534e;
+     font-weight: 500;
+   }
+   
+   .register-form {
+     display: flex;
+     width: 100%;
+     max-width: 900px;
+     gap: 50px;
+     align-items: stretch;
+   }
+   
+   .register-left-side {
+     flex: 1.2;
+     background: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 35px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+   }
+   
+   .register-row-group {
+     display: flex;
+     gap: 18px;
+   }
+   
+   /* Date Birth section */
+   .date-section {
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+   }
+   
+   .date-label {
+     font-size: 13px;
+     color: #55534e;
+     font-weight: 600;
+   }
+   
+   .date-row {
+     display: flex;
+     gap: 12px;
+   }
+   
+   .date-row-offset {
+     flex: 1;
+   }
+   
+   /* Stamp graphics */
+   .stamp-badge {
+     position: absolute;
+     top: -45px;
+     right: -35px;
+     z-index: 10;
+     animation: float 4s ease-in-out infinite;
+   }
+   
+   @keyframes float {
+     0% { transform: translateY(0px) rotate(0deg); }
+     50% { transform: translateY(-8px) rotate(3deg); }
+     100% { transform: translateY(0px) rotate(0deg); }
+   }
+   
+   .stamp-badge img {
+     width: 95px;
+     height: auto;
+     filter: drop-shadow(0 8px 16px rgba(0,0,0,0.06));
+   }
+   
+   .register-right-card {
+     flex: 0.9;
+     background-color: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 35px 28px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     position: relative;
+     box-shadow: 0 10px 30px -15px rgba(0,0,0,0.03);
+   }
+   
+   .register-btn {
+     background-color: #1e1e1e;
+     color: #ffffff;
+     border: none;
+     font-weight: bold;
+     height: 48px;
+     border-radius: 12px;
+     font-size: 15px;
+     width: 100%;
+   }
+   
+   .register-btn:hover {
+     background-color: #cf4638;
+     box-shadow: 0 4px 12px rgba(207, 70, 56, 0.2);
+   }
+   
+   .terms-box {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     font-size: 13.5px;
+     color: #6e6b64;
+     margin-top: 10px;
+     font-weight: 500;
+   }
+   
+   .terms-box input[type="checkbox"] {
+     width: 20px;
+     height: 20px;
+     cursor: pointer;
+     accent-color: #cf4638;
+     border-radius: 6px;
+     border: 1.5px solid #eae8e4;
+   }
+   
+   .register-footer-security {
+     margin-top: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     color: #6e6b64;
+     font-size: 14px;
+     font-weight: 500;
+   }
+   
+   .shield-icon {
+     font-size: 18px;
+     color: #cf4638;
+   }
+   
+   /* ==========================================================================
+      SEARCH PAGE (Interactive Dashboard & Calendars)
+      ========================================================================== */
+   .search-page {
+     background-color: #fcfbf9;
+     padding-bottom: 80px;
+   }
+   
+   .search-header {
+     width: 100%;
+     max-width: 1200px;
+     margin: 50px auto 40px auto;
+     padding: 0 40px;
+     text-align: left;
+   }
+   
+   .search-header h2 {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 42px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 8px;
+   }
+   
+   .search-header p {
+     font-size: 16px;
+     color: #6e6b64;
+     font-weight: 500;
+   }
+   
+   .search-content-wrapper {
+     display: flex;
+     width: 100%;
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 40px;
+     gap: 40px;
+     align-items: center;
+     justify-content: space-between;
+   }
+   
+   .search-inputs-container {
+     flex: 1.3;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+   }
+   
+   .search-row {
+     display: flex;
+     gap: 18px;
+   }
+   
+   .side-graphic-right {
+     flex: 0.7;
+     display: flex;
+     justify-content: center;
+     position: relative;
+   }
+   
+   .polaroid-img {
+     width: 100%;
+     max-width: 320px;
+     border-radius: 12px;
+     background: white;
+     padding: 12px 12px 30px 12px;
+     border: 1.5px solid #eae8e4;
+     box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05);
+     transform: rotate(3deg);
+     transition: transform 0.4s ease;
+   }
+   
+   .polaroid-img:hover {
+     transform: rotate(0deg) scale(1.03);
+   }
+   
+   /* Calendars view */
+   .calendars-section {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+     max-width: 1200px;
+     margin: 60px auto 0 auto;
+     padding: 0 40px;
+     gap: 80px;
+   }
+   
+   .calendar-block {
+     flex: 1;
+     background: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 24px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 20px;
+     box-shadow: 0 10px 25px -15px rgba(0,0,0,0.02);
+   }
+   
+   .calendar-label-btn {
+     background-color: #faf9f6;
+     border: 1.5px solid #eae8e4;
+     padding: 6px 16px;
+     border-radius: 20px;
+     font-size: 13px;
+     font-weight: 700;
+     color: #cf4638;
+   }
+   
+   .mock-calendar-box {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+   }
+   
+   .mock-calendar-box img {
+     width: 100%;
+     max-width: 280px;
+     height: auto;
+     border-radius: 12px;
+   }
+   
+   .main-search-btn {
+     background-color: #1e1e1e;
+     height: 48px;
+     border-radius: 12px;
+     color: white;
+     font-weight: bold;
+     padding: 0 30px;
+   }
+   
+   .main-search-btn:hover {
+     background-color: #cf4638;
+     box-shadow: 0 4px 12px rgba(207, 70, 56, 0.25);
+   }
+   
+   .attraction-search-btn {
+     background-color: #cf4638;
+     height: 48px;
+     border-radius: 12px;
+     color: white;
+     font-weight: bold;
+     padding: 0 30px;
+   }
+   
+   .attraction-search-btn:hover {
+     background-color: #1e1e1e;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+   }
+   
+   /* ==========================================================================
+      RECOMMENDED OFFERS PAGE (Bento Cards Grid)
+      ========================================================================== */
+   .offers-page {
+     background-color: #fbb0ff3; /* Subtle clean theme background */
+   }
+   
+   .offers-header {
+     text-align: center;
+     margin: 50px auto 40px auto;
+     max-width: 800px;
+   }
+   
+   .offers-main-title {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 46px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 8px;
+   }
+   
+   .offers-subtitle {
+     font-size: 16px;
+     font-weight: 500;
+     color: #6e6b64;
+   }
+   
+   .offers-container {
+     width: 100%;
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 40px;
+   }
+   
+   .offers-section-title {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 24px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 30px;
+     border-left: 4px solid #cf4638;
+     padding-left: 14px;
+   }
+   
+   .offers-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 32px;
+   }
+   
+   .offer-card {
+     background: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 16px;
+     display: flex;
+     flex-direction: column;
+     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+     box-shadow: 0 10px 30px -15px rgba(0,0,0,0.02);
+   }
+   
+   .offer-card:hover {
+     transform: translateY(-6px);
+     box-shadow: 0 18px 40px -15px rgba(0,0,0,0.06);
+     border-color: #cf4638;
+   }
+   
+   .offer-image-box {
+     width: 100%;
+     height: 220px;
+     border-radius: 12px;
+     overflow: hidden;
+     margin-bottom: 18px;
+   }
+   
+   .offer-image-box img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+   }
+   
+   .offer-card:hover .offer-image-box img {
+     transform: scale(1.05);
+   }
+   
+   .offer-description {
+     font-size: 14px;
+     font-weight: 500;
+     color: #55534e;
+     line-height: 1.6;
+     margin-bottom: 20px;
+     min-height: 68px;
+   }
+   
+   .offer-footer-row {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin-top: auto;
+     border-top: 1.5px solid #faf9f6;
+     padding-top: 14px;
+   }
+   
+   .offer-price {
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .price-label {
+     font-size: 11px;
+     font-weight: 700;
+     text-transform: uppercase;
+     color: #a19e95;
+     letter-spacing: 0.5px;
+   }
+   
+   .price-amount {
+     font-family: 'JetBrains Mono', monospace;
+     font-size: 26px;
+     font-weight: 800;
+     color: #1e1e1e;
+   }
+   
+   .offer-info-btn {
+     background-color: #1e1e1e;
+     color: #ffffff;
+     border-radius: 10px;
+     padding: 10px 18px;
+     font-size: 13px;
+     font-weight: 700;
+   }
+   
+   .offer-info-btn:hover {
+     background-color: #cf4638;
+   }
+   
+   .offers-load-more-btn {
+     background-color: transparent;
+     border: 1.5px solid #eae8e4;
+     color: #1e1e1e;
+     border-radius: 20px;
+     padding: 10px 24px;
+     font-size: 13.5px;
+     font-weight: 700;
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     margin: 50px auto 0 auto;
+   }
+   
+   .offers-load-more-btn:hover {
+     border-color: #cf4638;
+     color: #cf4638;
+     background-color: #fdf3f0;
+   }
+   
+   /* ==========================================================================
+      VISITOR PROFILE PAGE
+      ========================================================================== */
+   .profile-page {
+     background-color: #fcfbf9;
+   }
+   
+   .profile-container {
+     display: flex;
+     width: 100%;
+     max-width: 1000px;
+     margin: 60px auto 0 auto;
+     padding: 0 40px;
+     gap: 60px;
+     background: white;
+     border: 1.5px solid #eae8e4;
+     border-radius: 24px;
+     padding: 40px;
+   }
+   
+   .profile-left-hero {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     flex: 0.6;
+   }
+   
+   .profile-main-title {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 38px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 24px;
+     text-align: center;
+   }
+   
+   .profile-avatar-icon {
+     font-size: 110px;
+     color: #cf4638;
+   }
+   
+   .profile-data-wrapper {
+     flex: 1.4;
+     display: flex;
+     gap: 40px;
+   }
+   
+   .profile-data-column {
+     flex: 1;
+   }
+   
+   .profile-info-field {
+     background-color: #faf9f6;
+     border: 1.5px solid #eae8e4;
+     border-radius: 12px;
+     padding: 12px 16px;
+     font-size: 14.5px;
+     font-weight: 600;
+     color: #1e1e1e;
+     min-height: 46px;
+     margin-bottom: 12px;
+   }
+   
+   .profile-reg-date {
+     font-family: 'JetBrains Mono', monospace;
+     font-size: 15px;
+     font-weight: 700;
+     color: #cf4638;
+     margin-top: 8px;
+   }
+   
+   .wishlist-section {
+     width: 100%;
+     max-width: 1000px;
+     margin: 40px auto 0 auto;
+     padding: 0 40px;
+   }
+   
+   .wishlist-section h2 {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 30px;
+     font-weight: 700;
+     margin-bottom: 6px;
+   }
+   
+   .wishlist-subtitle {
+     font-size: 14.5px;
+     color: #6e6b64;
+     margin-bottom: 24px;
+   }
+   
+   .wishlist-list {
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
+   }
+   
+   .wishlist-item {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     font-size: 15px;
+     font-weight: 600;
+     color: #1e1e1e;
+     background: white;
+     border: 1.5px solid #eae8e4;
+     padding: 14px 20px;
+     border-radius: 12px;
+   }
+   
+   .heart-icon {
+     font-size: 18px;
+     color: #cf4638;
+     cursor: pointer;
+   }
+   
+   .profile-footer-buttons {
+     width: 100%;
+     max-width: 1000px;
+     margin: 40px auto 0 auto;
+     padding: 0 40px;
+     display: flex;
+     justify-content: flex-end;
+     gap: 16px;
+   }
+   
+   .profile-edit-btn {
+     background-color: transparent;
+     border: 1.5px solid #eae8e4;
+     color: #1e1e1e;
+     border-radius: 20px;
+     padding: 10px 24px;
+     font-size: 13.5px;
+     font-weight: 700;
+   }
+   
+   .profile-edit-btn:hover {
+     background-color: #faf9f6;
+     border-color: #1e1e1e;
+   }
+   
+   .profile-logout-btn {
+     background-color: #1e1e1e;
+     color: #ffffff;
+     border-radius: 20px;
+     padding: 10px 24px;
+     font-size: 13.5px;
+     font-weight: 700;
+   }
+   
+   .profile-logout-btn:hover {
+     background-color: #cf4638;
+   }
+   
+   /* ==========================================================================
+      CITY ATTRACTIONS PAGE
+      ========================================================================== */
+   .attractions-header {
+     width: 100%;
+     max-width: 1000px;
+     margin: 50px auto 30px auto;
+   }
+   
+   .attractions-header h2 {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 42px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 8px;
+   }
+   
+   .attractions-subtitle {
+     font-size: 16px;
+     color: #6e6b64;
+     font-weight: 500;
+   }
+   
+   .attractions-form-wrapper {
+     display: flex;
+     width: 100%;
+     max-width: 1000px;
+     margin: 0 auto;
+     gap: 40px;
+   }
+   
+   .attractions-card {
+     flex: 1;
+     background-color: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 35px;
+   }
+   
+   /* Disabled locked state */
+   .disabled-input {
+     background-color: #faf9f6 !important;
+     color: #a19e95 !important;
+     border-color: #eae8e4 !important;
+     cursor: not-allowed;
+   }
+   
+   .disabled-select {
+     background-color: #faf9f6 !important;
+     color: #a19e95 !important;
+     cursor: not-allowed;
+   }
+   
+   .attractions-reserve-btn {
+     background-color: transparent;
+     border: 1.5px solid #eae8e4;
+     color: #1e1e1e;
+     border-radius: 12px;
+     padding: 12px 30px;
+     font-size: 14px;
+     font-weight: 700;
+   }
+   
+   .attractions-reserve-btn:hover {
+     border-color: #1e1e1e;
+     background-color: #faf9f6;
+   }
+   
+   .attractions-special-btn {
+     background-color: #cf4638;
+     color: #ffffff;
+     border-radius: 20px;
+     padding: 12px 28px;
+     font-size: 14px;
+     font-weight: 700;
+   }
+   
+   .attractions-special-btn:hover {
+     background-color: #1e1e1e;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+   }
+   
+   /* ==========================================================================
+      CLIENT REVIEWS PAGE
+      ========================================================================== */
+   .reviews-header {
+     text-align: center;
+     margin: 50px auto 50px auto;
+   }
+   
+   .reviews-main-title {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 52px;
+     font-weight: 800;
+     color: #1e1e1e;
+     margin-bottom: 12px;
+   }
+   
+   .reviews-subtitle {
+     font-size: 16px;
+     color: #6e6b64;
+     font-weight: 500;
+   }
+   
+   .reviews-container {
+     width: 100%;
+     max-width: 800px;
+     margin: 0 auto;
+     display: flex;
+     flex-direction: column;
+     gap: 32px;
+   }
+   
+   .review-row-item {
+     background: white;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 24px;
+     display: flex;
+     align-items: flex-start;
+     gap: 20px;
+     box-shadow: 0 10px 25px -15px rgba(0,0,0,0.02);
+     transition: transform 0.3s ease;
+   }
+   
+   .review-row-item:hover {
+     transform: translateY(-2px);
+     border-color: #cf4638;
+   }
+   
+   .review-avatar-box {
+     width: 64px;
+     height: 64px;
+     border-radius: 50%;
+     overflow: hidden;
+     border: 2px solid #eae8e4;
+   }
+   
+   .review-avatar-box img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+   }
+   
+   .review-content-box {
+     display: flex;
+     flex-direction: column;
+     gap: 6px;
+   }
+   
+   .review-text {
+     font-size: 15px;
+     font-weight: 500;
+     line-height: 1.6;
+     color: #3e3d39;
+     font-style: italic;
+   }
+   
+   .review-author {
+     font-weight: 700;
+     font-size: 14.5px;
+     color: #1e1e1e;
+   }
+   
+   .review-stars {
+     color: #cf4638;
+     letter-spacing: 2px;
+     font-size: 14px;
+   }
+   
+   /* User share card block */
+   .share-experience-card {
+     background-color: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 28px;
+     width: 100%;
+     max-width: 420px;
+     margin: 40px auto 0 auto;
+   }
+   
+   .share-experience-card h3 {
+     font-family: 'Playfair Display', Georgia, serif;
+     font-size: 20px;
+     font-weight: 700;
+     color: #1e1e1e;
+     margin-bottom: 8px;
+   }
+   
+   .share-stars {
+     color: #cf4638;
+     font-size: 20px;
+     letter-spacing: 4px;
+   }
+   
+   .share-input-row {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     width: 100%;
+     margin-top: 15px;
+   }
+   
+   .share-user-avatar {
+     width: 36px;
+     height: 36px;
+     border-radius: 50%;
+     overflow: hidden;
+     border: 1.5px solid #eae8e4;
+   }
+   
+   .share-user-avatar img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+   }
+   
+   .share-input-row input {
+     height: 40px;
+     border-radius: 10px;
+   }
+   
+   /* ==========================================================================
+      RESPONSIVE DESIGN (Media Queries constraints)
+      ========================================================================== */
+   @media (max-width: 1024px) {
+     .offers-grid {
+       grid-template-columns: repeat(2, 1fr);
+     }
+   }
+   
+   @media (max-width: 768px) {
+     .search-navbar {
+       flex-direction: column;
+       height: auto;
+       padding: 20px;
+       gap: 15px;
+     }
+     
+     .nav-links {
+       flex-wrap: wrap;
+       justify-content: center;
+       gap: 20px;
+     }
+     
+     .login-footer {
+       grid-template-columns: 1fr;
+       gap: 30px;
+       text-align: center;
+     }
+     
+     .register-form {
+       flex-direction: column;
+       align-items: center;
+     }
+     
+     .register-right-card {
+       max-width: 100%;
+     }
+     
+     .search-content-wrapper {
+       flex-direction: column;
+       padding: 0 20px;
+     }
+     
+     .side-graphic-right {
+       margin-top: 30px;
+     }
+     
+     .calendars-section {
+       flex-direction: column;
+       gap: 30px;
+       padding: 0 20px;
+     }
+     
+     .offers-grid {
+       grid-template-columns: 1fr;
+       justify-content: center;
+     }
+     
+     .profile-container {
+       flex-direction: column;
+       padding: 24px;
+     }
+     
+     .profile-data-wrapper {
+       flex-direction: column;
+       gap: 20px;
+     }
+     
+     .attractions-form-wrapper {
+       flex-direction: column;
+       padding: 0 20px;
+     }
+     
+     .reviews-main-title {
+       font-size: 38px;
+     }
+   }
+   

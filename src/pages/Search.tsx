@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../App.css"; // POVEZANO: Sada vuče sve stilove iz glavnog App.css fajla
+import "../App.css";
 import Navbar from '../components/Navbar';
+import InputField from '../components/InputField';
+import CustomButton from '../components/CustomButton';
 
-// I unutar return-a samo pozoveš:
-<Navbar />
 const Search = () => {
     const navigate = useNavigate();
 
@@ -19,8 +19,7 @@ const Search = () => {
 
     return (
         <div className="search-page">
-            
-           
+            <Navbar />
 
             {/* 2. GLAVNI NASLOV */}
             <div className="search-header">
@@ -41,52 +40,47 @@ const Search = () => {
                     
                     {/* Prvi red: Destinacija, Broj putnika, Agencija */}
                     <div className="search-row">
-                        <div className="search-input-box">
-                            <label>Destinacija</label>
-                            <input 
-                                type="text" 
-                                value={searchParams.destinacija} 
-                                onChange={(e) => setSearchParams({...searchParams, destinacija: e.target.value})} 
-                            />
-                        </div>
-                        <div className="search-input-box">
-                            <label>Broj putnika</label>
-                            <input 
-                                type="text" 
-                                value={searchParams.brojPutnika} 
-                                onChange={(e) => setSearchParams({...searchParams, brojPutnika: e.target.value})} 
-                            />
-                        </div>
-                        <div className="search-input-box">
-                            <label>Turistička agencija</label>
-                            <input 
-                                type="text" 
-                                value={searchParams.turistickaAgencija} 
-                                onChange={(e) => setSearchParams({...searchParams, turistickaAgencija: e.target.value})} 
-                            />
-                        </div>
+                        <InputField
+                            label="Destinacija"
+                            type="text"
+                            value={searchParams.destinacija}
+                            onChange={(e) => setSearchParams({...searchParams, destinacija: e.target.value})}
+                        />
+                        <InputField
+                            label="Broj putnika"
+                            type="text"
+                            value={searchParams.brojPutnika}
+                            onChange={(e) => setSearchParams({...searchParams, brojPutnika: e.target.value})}
+                        />
+                        <InputField
+                            label="Turistička agencija"
+                            type="text"
+                            value={searchParams.turistickaAgencija}
+                            onChange={(e) => setSearchParams({...searchParams, turistickaAgencija: e.target.value})}
+                        />
                     </div>
 
                     {/* Drugi red: Tip putovanja, Budžet */}
                     <div className="search-row dynamic-row-2">
-                        <div className="search-input-box">
-                            <label>Tip putovanja</label>
-                            <input 
-                                type="text" 
-                                value={searchParams.tipPutovanja} 
-                                onChange={(e) => setSearchParams({...searchParams, tipPutovanja: e.target.value})} 
-                            />
-                        </div>
-                        <div className="search-input-box">
-                            <label>Budžet</label>
-                            <input 
-                                type="text" 
-                                value={searchParams.budzet} 
-                                onChange={(e) => setSearchParams({...searchParams, budzet: e.target.value})} 
-                            />
-                        </div>
+                        <InputField
+                            label="Tip putovanja"
+                            type="text"
+                            value={searchParams.tipPutovanja}
+                            onChange={(e) => setSearchParams({...searchParams, tipPutovanja: e.target.value})}
+                        />
+                        <InputField
+                            label="Budžet"
+                            type="text"
+                            value={searchParams.budzet}
+                            onChange={(e) => setSearchParams({...searchParams, budzet: e.target.value})}
+                        />
                     </div>
 
+                </div>
+
+                {/* Polaroid sličice sa desne strane */}
+                <div className="side-graphic-right">
+                    <img src="/slike/image8.png" alt="Slike" className="polaroid-img" />
                 </div>
 
                 {/* Polaroid sličice sa desne strane */}
@@ -105,9 +99,7 @@ const Search = () => {
                     <div className="mock-calendar-box">
                         <img src="/slike/image9.png" alt="Kalendar odlazak" />
                     </div>
-                    <button className="search-action-btn main-search-btn" onClick={() => navigate('/offers')}>
-                        Pretraži
-                    </button>
+                    <CustomButton className="main-search-btn" text="Pretraži" onClick={() => navigate('/offers')} />
                 </div>
 
                 {/* Desni blok: Datum odlaska + Kalendar + Dugme */}
@@ -116,9 +108,7 @@ const Search = () => {
                     <div className="mock-calendar-box">
                         <img src="/slike/image9.png" alt="Kalendar povratak" />
                     </div>
-                    <button className="search-action-btn attraction-search-btn" onClick={() => navigate('/attractions')}>
-                        Pretraži atrakcije grada
-                    </button>
+                    <CustomButton className="attraction-search-btn" text="Pretraži atrakcije grada" onClick={() => navigate('/attractions')} />
                 </div>
 
             </div>

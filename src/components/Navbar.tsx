@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <nav className="search-navbar">
             <div className="nav-logo">
-                <img src="/slike/logo.png" alt="Logo" />
+                <img src="/slikeN/logo.png" alt="Logo" />
             </div>
             <div className="nav-links">
                 <span onClick={() => navigate('/reviews')}>Recenzije</span>

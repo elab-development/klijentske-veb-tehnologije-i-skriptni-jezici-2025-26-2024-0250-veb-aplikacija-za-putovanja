@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Register.css"; // POVEZANO: Sada Register vuče stilove direktno iz svog CSS fajla
-import Navbar from '../components/Navbar';
+import "../App.css";
+import InputField from "../components/InputField";
+import CustomButton from "../components/CustomButton";
 
-// I unutar return-a samo pozoveš:
-<Navbar />
 const Register = () => {
   const navigate = useNavigate();
 
@@ -53,57 +52,59 @@ const Register = () => {
         <div className="register-left-side">
           
           <div className="register-row-group">
-            <div className="input-box">
-              <label><span className="doc-icon">📄</span> Ime</label>
-              <input
-                type="text"
-                value={userData.ime}
-                onChange={(e) => setUserData({ ...userData, ime: e.target.value })}
-              />
-            </div>
-            <div className="input-box">
-              <label>Prezime</label>
-              <input
-                type="text"
-                value={userData.prezime}
-                onChange={(e) => setUserData({ ...userData, prezime: e.target.value })}
-              />
-            </div>
+            <InputField
+              containerClassName="input-box"
+              label={<><span className="doc-icon">📄</span> Ime</>}
+              type="text"
+              value={userData.ime}
+              onChange={(e) => setUserData({ ...userData, ime: e.target.value })}
+            />
+            <InputField
+              containerClassName="input-box"
+              label="Prezime"
+              type="text"
+              value={userData.prezime}
+              onChange={(e) => setUserData({ ...userData, prezime: e.target.value })}
+            />
           </div>
 
           <div className="register-row-group">
-            <div className="input-box">
-              <label>Pol</label>
-              <input
-                type="text"
-                value={userData.pol}
-                onChange={(e) => setUserData({ ...userData, pol: e.target.value })}
-              />
-            </div>
-            <div className="input-box">
-              <label>Br. telefona</label>
-              <input
-                type="text"
-                value={userData.telefon}
-                onChange={(e) => setUserData({ ...userData, telefon: e.target.value })}
-              />
-            </div>
+            <InputField
+              containerClassName="input-box"
+              label="Pol"
+              type="text"
+              value={userData.pol}
+              onChange={(e) => setUserData({ ...userData, pol: e.target.value })}
+            />
+            <InputField
+              containerClassName="input-box"
+              label="Br. telefona"
+              type="text"
+              value={userData.telefon}
+              onChange={(e) => setUserData({ ...userData, telefon: e.target.value })}
+            />
           </div>
 
           <div className="date-section">
             <label className="date-label">Datum rođenja</label>
             <div className="date-row">
-              <input
+              <InputField
+                containerClassName="date-row-offset"
+                type="text"
                 placeholder="DD"
                 value={userData.dan}
                 onChange={(e) => setUserData({ ...userData, dan: e.target.value })}
               />
-              <input
+              <InputField
+                containerClassName="date-row-offset"
+                type="text"
                 placeholder="MM"
                 value={userData.mesec}
                 onChange={(e) => setUserData({ ...userData, mesec: e.target.value })}
               />
-              <input
+              <InputField
+                containerClassName="date-row-offset"
+                type="text"
                 placeholder="YYYY"
                 value={userData.godina}
                 onChange={(e) => setUserData({ ...userData, godina: e.target.value })}
@@ -120,27 +121,23 @@ const Register = () => {
             <img src="/stamp-avion.png" alt="Stamp" /> 
           </div>
 
-          <div className="card-input-box">
-            <label>Email</label>
-            <input
-              type="email"
-              value={userData.email}
-              onChange={(e) => setUserData({ ...userData, email: e.target.value })}
-            />
-          </div>
+          <InputField
+            containerClassName="card-input-box"
+            label="Email"
+            type="email"
+            value={userData.email}
+            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+          />
 
-          <div className="card-input-box">
-            <label>Lozinka</label>
-            <input
-              type="password"
-              value={userData.lozinka}
-              onChange={(e) => setUserData({ ...userData, lozinka: e.target.value })}
-            />
-          </div>
+          <InputField
+            containerClassName="card-input-box"
+            label="Lozinka"
+            type="password"
+            value={userData.lozinka}
+            onChange={(e) => setUserData({ ...userData, lozinka: e.target.value })}
+          />
 
-          <button type="submit" className="register-btn">
-            Registruj se
-          </button>
+          <CustomButton type="submit" className="register-btn" text="Registruj se" />
 
           {/* Prihvati uslove */}
           <div className="terms-box">
