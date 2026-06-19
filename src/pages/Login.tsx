@@ -60,7 +60,7 @@ const Login = () => {
         <p className="login-register-text">
           Nemate nalog?
         </p>
-
+        /*custom button*/
         <CustomButton
           className="login-register-btn"
           text="Registruj se"
