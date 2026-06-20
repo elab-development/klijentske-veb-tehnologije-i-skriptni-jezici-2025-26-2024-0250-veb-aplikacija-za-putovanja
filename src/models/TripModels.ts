@@ -5,6 +5,9 @@ export interface ITrip {
     cena: number;
     slika: string;
     kategorija: string;
+    tipPutovanja?: string;
+    trajanjeDana?: number;
+    smestaj?: string;
 }
 
 export interface IReview {
