@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "../App.css";
 import Navbar from '../components/Navbar';
 import { useApp } from '../context/AppContext';
-import { TripCalculator } from '../models/TripModels';
+import { travelTripCalculator } from '../models/TripModels';
 
 interface IBooking {
     id: number;
@@ -180,7 +180,7 @@ const Attractions = () => {
                         </div>
                         <div className="attractions-input-box" style={{ flex: 1 }}>
                             <label>Bazična cijena obilaska:</label>
-                            <input type="text" value={TripCalculator.formatirajCenu(selektovaniGrad.bazaCena)} disabled className="disabled-input" />
+                            <input type="text" value={travelTripCalculator.formatirajCenu(selektovaniGrad.bazaCena)} disabled className="disabled-input" />
                         </div>
                     </div>
 
@@ -194,7 +194,7 @@ const Attractions = () => {
                         >
                             {trenutniPlanovi.map((plan, idx) => (
                                 <option key={idx} value={idx}>
-                                    {plan.ime} {plan.doplata > 0 ? `(+${TripCalculator.formatirajCenu(plan.doplata)})` : '(Uključeno u bazu)'}
+                                    {plan.ime} {plan.doplata > 0 ? `(+${travelTripCalculator.formatirajCenu(plan.doplata)})` : '(Uključeno u bazu)'}
                                 </option>
                             ))}
                         </select>
@@ -298,21 +298,21 @@ const Attractions = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '10px', fontSize: '13.5px', borderBottom: '1px solid #eae8e4', paddingBottom: '10px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <span>Baza i turistički plan ({brojOsoba}x):</span>
-                                <span style={{ fontWeight: 600 }}>{TripCalculator.formatirajCenu(obracun.osnovica)}</span>
+                                <span style={{ fontWeight: 600 }}>{travelTripCalculator.formatirajCenu(obracun.osnovica)}</span>
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <span>Dodatne usluge / servisi:</span>
-                                <span style={{ fontWeight: 600 }}>{TripCalculator.formatirajCenu(obracun.naknadaDodaci)}</span>
+                                <span style={{ fontWeight: 600 }}>{travelTripCalculator.formatirajCenu(obracun.naknadaDodaci)}</span>
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <span>Turistička taksa & PDV (20%):</span>
-                                <span style={{ fontWeight: 600 }}>{TripCalculator.formatirajCenu(obracun.porez)}</span>
+                                <span style={{ fontWeight: 600 }}>{travelTripCalculator.formatirajCenu(obracun.porez)}</span>
                             </div>
                         </div>
 
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
                             <span style={{ fontWeight: 'bold', fontSize: '15px' }}>Ukupno za uplatu:</span>
-                            <span style={{ fontFamily: 'JetBrains Mono', fontSize: '24px', fontWeight: 'bold', color: '#cf4638' }}>{TripCalculator.formatirajCenu(obracun.ukupno)}</span>
+                            <span style={{ fontFamily: 'JetBrains Mono', fontSize: '24px', fontWeight: 'bold', color: '#cf4638' }}>{travelTripCalculator.formatirajCenu(obracun.ukupno)}</span>
                         </div>
                     </div>
                 </div>

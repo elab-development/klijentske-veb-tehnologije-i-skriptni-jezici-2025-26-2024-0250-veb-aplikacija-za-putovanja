@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { TripCalculator } from '../models/TripModels';
+import { travelTripCalculator } from '../models/TripModels';
 import type { ITrip } from '../models/TripModels';
 import "../App.css";
 import { useApp } from '../context/AppContext';
@@ -117,7 +117,7 @@ const Offers = () => {
             const max = parseFloat(filteri.budzetMax);
             if (!isNaN(max)) {
                 filtrirano = filtrirano.filter(t => {
-                    const finalna = TripCalculator.izracunajSaPorezom(t.cena);
+                    const finalna = travelTripCalculator.izracunajSaPorezom(t.cena);
                     return finalna <= max;
                 });
             }
@@ -235,7 +235,7 @@ const Offers = () => {
                 ) : (
                     <div className="offers-grid">
                         {trips.map(trip => {
-                            const konacnaCena = Math.round(TripCalculator.izracunajSaPorezom(trip.cena));
+                            const konacnaCena = Math.round(travelTripCalculator.izracunajSaPorezom(trip.cena));
                             const listFormattedName = `${trip.naslov} - ${trip.kategorija}`;
                             const isSaved = wishlist.includes(listFormattedName);
 
@@ -265,12 +265,12 @@ const Offers = () => {
                                     <div className="offer-footer-row">
                                         <div className="offer-price">
                                             <span className="price-label">Od (sa porezom)</span>
-                                            <span className="price-amount">{TripCalculator.formatirajCenu(konacnaCena)}</span>
+                                            <span className="price-amount">{travelTripCalculator.formatirajCenu(konacnaCena)}</span>
                                         </div>
                                         <button 
                                             className="offer-info-btn" 
                                             onClick={() => {
-                                                alert(`Uspješna simulacija pregleda detalja za: ${trip.naslov}!\n\nID Ponude: ${trip.id}\nKategorija: ${trip.kategorija}\nOsnovna cena: ${TripCalculator.formatirajCenu(trip.cena)}\nCena sa 20% poreza: ${TripCalculator.formatirajCenu(konacnaCena)}`);
+                                                alert(`Uspješna simulacija pregleda detalja za: ${trip.naslov}!\n\nID Ponude: ${trip.id}\nKategorija: ${trip.kategorija}\nOsnovna cena: ${travelTripCalculator.formatirajCenu(trip.cena)}\nCena sa 20% poreza: ${travelTripCalculator.formatirajCenu(konacnaCena)}`);
                                             }}
                                         >
                                             Detaljnije ➔

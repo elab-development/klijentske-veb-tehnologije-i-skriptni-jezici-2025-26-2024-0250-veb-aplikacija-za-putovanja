@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { ReviewValidator } from '../models/TripModels';
+import { travelReviewValidator } from '../models/TripModels';
 import type { IReview } from '../models/TripModels';
 import "../App.css";
 
@@ -69,15 +69,15 @@ const Reviews = () => {
             return;
         }
 
-        // Korišćenje metode iz klase ReviewValidator (Zahtev: klasa aktivno korišćena u veb aplikaciji)
-        const isValidComment = ReviewValidator.proveriDuzinuKomentara(noviKomentar, 10, maxKaraktera);
+        // Korišćenje metode iz interfejsa IReviewValidator preko instance travelReviewValidator
+        const isValidComment = travelReviewValidator.proveriDuzinuKomentara(noviKomentar, 10, maxKaraktera);
         if (!isValidComment) {
             alert(`Vaša recenzija mora imati između 10 i ${maxKaraktera} karaktera.`);
             return;
         }
 
-        // Korišćenje metode iz klase ReviewValidator za formatiranje imena (sva početna velika slova)
-        const formatiranoIme = ReviewValidator.formatirajImeAutora(imeKorisnika);
+        // Korišćenje metode iz interfejsa IReviewValidator za formatiranje imena
+        const formatiranoIme = travelReviewValidator.formatirajImeAutora(imeKorisnika);
 
         const novaRecenzija: IReview = {
             id: Date.now(), // Unikatan ID generisan preko tajmstempa
