@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../App.css";
 import Navbar from '../components/Navbar';
+import { useApp } from '../context/AppContext';
 
 interface IBooking {
     id: number;
@@ -26,58 +27,17 @@ interface IProfileData {
 
 const Profile = () => {
     const navigate = useNavigate();
+    const { profile, wishlist, bookings, updateProfile, cancelBooking, toggleWishlist } = useApp();
 
-    // Profile Edit Panel States (Functionality 6)
+    // Profile Edit Panel local States (Functionality 6)
     const [isEditing, setIsEditing] = useState(false);
-    const [profileData, setProfileData] = useState<IProfileData>({
-        ime: "Anja Karadžić",
-        pol: "Žinski", // promenićemo u Ž
-        datumRodjenja: "2005-05-23",
-        telefon: "+381635492851",
-        email: "anjakaradzic@gmail.com",
-        kartica: "4532 9981 3324 6543"
-    });
-
+    const [profileData, setProfileData] = useState<IProfileData>(profile);
     const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
-    // Wishlist items state (Functionality 2)
-    const [wishlist, setWishlist] = useState<string[]>([]);
-    
-    // Active Bookings database state (Functionality 5)
-    const [bookings, setBookings] = useState<IBooking[]>([]);
-
-    // Učitaj sve podatke na mount-u
+    // Synchronize local edit state with global profile state on context updates
     useEffect(() => {
-        // 1. Profilni podaci
-        try {
-            const savedProfile = localStorage.getItem('travel_profile');
-            if (savedProfile) {
-                setProfileData(JSON.parse(savedProfile));
-            }
-        } catch (e) {
-            console.error(e);
-        }
-
-        // 2. Wishlista
-        try {
-            const savedWishlist = localStorage.getItem('travel_wishlist');
-            if (savedWishlist) {
-                setWishlist(JSON.parse(savedWishlist));
-            }
-        } catch (e) {
-            console.error(e);
-        }
-
-        // 3. Rezervacije
-        try {
-            const savedBookings = localStorage.getItem('travel_bookings');
-            if (savedBookings) {
-                setBookings(JSON.parse(savedBookings));
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    }, []);
+        setProfileData(profile);
+    }, [profile]);
 
     // FUNCTIONALITY 6: Schema Validators for forms
     const validateForm = (data: IProfileData) => {
@@ -138,7 +98,7 @@ const Profile = () => {
             return;
         }
 
-        localStorage.setItem('travel_profile', JSON.stringify(profileData));
+        updateProfile(profileData);
         setIsEditing(false);
         setFormErrors({});
         alert("Podaci na Vašem profilu su uspešno ažurirani.");
@@ -146,17 +106,18 @@ const Profile = () => {
 
     // FUNCTIONALITY 2: Remove single item from wishlist
     const handleRemoveFromWishlist = (item: string) => {
-        const novaLista = wishlist.filter(x => x !== item);
-        setWishlist(novaLista);
-        localStorage.setItem('travel_wishlist', JSON.stringify(novaLista));
+        const parts = item.split(' - ');
+        if (parts.length >= 2) {
+            toggleWishlist(parts[0].trim(), parts[1].trim());
+        } else {
+            toggleWishlist(item, "");
+        }
     };
 
     // FUNCTIONALITY 5: Cancel specific booking
     const handleCancelBooking = (bookingId: number, grad: string) => {
         if (window.confirm(`Da li ste sigurni da želite da otkažete rezervaciju izleta za grad ${grad}?`)) {
-            const novaLista = bookings.filter(b => b.id !== bookingId);
-            setBookings(novaLista);
-            localStorage.setItem('travel_bookings', JSON.stringify(novaLista));
+            cancelBooking(bookingId);
             alert("Rezervacija je uspešno otkazana. Novac će biti vraćen na Vašu povezanu karticu.");
         }
     };

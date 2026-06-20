@@ -2,11 +2,27 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
 import CustomButton from "../components/CustomButton";
+import { useApp } from "../context/AppContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login } = useApp();
+
+  const handleLogin = () => {
+    if (!email.trim()) {
+      alert("Molimo Vas da unesete email adresu.");
+      return;
+    }
+    // Simple email format check
+    if (!email.includes("@")) {
+      alert("Molimo Vas da unesete ispravan email.");
+      return;
+    }
+    login(email);
+    navigate("/search");
+  };
 
   return (
     <div className="login-page">
@@ -54,13 +70,13 @@ const Login = () => {
         <CustomButton
           className="login-btn"
           text="Prijavi se"
-          onClick={() => navigate("/search")}
+          onClick={handleLogin}
         />
 
         <p className="login-register-text">
           Nemate nalog?
         </p>
-        /*custom button*/
+
         <CustomButton
           className="login-register-btn"
           text="Registruj se"

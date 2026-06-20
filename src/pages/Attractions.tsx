@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../App.css";
 import Navbar from '../components/Navbar';
+import { useApp } from '../context/AppContext';
 
 interface IBooking {
     id: number;
@@ -17,6 +18,7 @@ interface IBooking {
 
 const Attractions = () => {
     const navigate = useNavigate();
+    const { addBooking } = useApp();
 
     // Gradovi sa cenama avantura
     const GRAD_OPCIJE = [
@@ -106,7 +108,7 @@ const Attractions = () => {
         setOdabraniPlanIndeks(0);
     }, [odabraniIndeks]);
 
-    // FUNCTIONALITY 4: Create booking object and persist in LocalStorage
+    // FUNCTIONALITY 4: Create booking object and persist in LocalStorage Context
     const handleRezersisiSada = () => {
         const plans = PLAN_OPCIJE[selektovaniGrad.drzava] || [];
         const izabraniPlanIme = plans[odabraniPlanIndeks]?.ime || "Standard";
@@ -129,13 +131,7 @@ const Attractions = () => {
         };
 
         try {
-            const postojeceRezervacijeStr = localStorage.getItem('travel_bookings');
-            let lista: IBooking[] = [];
-            if (postojeceRezervacijeStr) {
-                lista = JSON.parse(postojeceRezervacijeStr);
-            }
-            lista.push(novaRezervacija);
-            localStorage.setItem('travel_bookings', JSON.stringify(lista));
+            addBooking(novaRezervacija);
 
             alert(`Uspešno ste rezervisali izlet za ${selektovaniGrad.grad}! Vaša rezervacija je sačuvana u Vašem profilu.`);
             navigate('/profile');

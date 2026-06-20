@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "../App.css";
 import InputField from "../components/InputField";
 import CustomButton from "../components/CustomButton";
+import { useApp } from "../context/AppContext";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { registerUser } = useApp();
 
   // Tvoj originalni state - čist i bez komplikacija
   const [userData, setUserData] = useState({
@@ -23,8 +25,25 @@ const Register = () => {
   // handleSubmit napisan jednostavno u tvom stilu, radi bez greške u TS-u
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    if (!userData.ime.trim() || !userData.email.trim()) {
+      alert("Ime i E-mail su obavezna polja!");
+      return;
+    }
+    // Set default values if date inputs are missing
+    const yyyy = userData.godina.trim() || "2005";
+    const mm = userData.mesec.trim().padStart(2, '0') || "05";
+    const dd = userData.dan.trim().padStart(2, '0') || "23";
+    const rodjenjeStr = `${yyyy}-${mm}-${dd}`;
+
+    registerUser({
+      ime: `${userData.ime} ${userData.prezime}`.trim(),
+      pol: userData.pol || "Ž",
+      telefon: userData.telefon || "+381635492851",
+      email: userData.email,
+      rodjenje: rodjenjeStr
+    });
     alert("Uspešna registracija!");
-    navigate("/");
+    navigate("/search");
   };
 
   return (

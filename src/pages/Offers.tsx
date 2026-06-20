@@ -4,10 +4,12 @@ import Navbar from '../components/Navbar';
 import { TripCalculator } from '../models/TripModels';
 import type { ITrip } from '../models/TripModels';
 import "../App.css";
+import { useApp } from '../context/AppContext';
 
 const Offers = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { wishlist, toggleWishlist, setWishlistExternally } = useApp();
     
     // Proširena baza destinacija za bogatije filtriranje
     const SVE_PONUDE: ITrip[] = [
@@ -69,8 +71,6 @@ const Offers = () => {
         sortiranje: 'default' // 'default', 'cena-asc', 'cena-desc'
     });
 
-    // Wishlist state (Functional 2)
-    const [wishlist, setWishlist] = useState<string[]>([]);
     const [trips, setTrips] = useState<ITrip[]>(SVE_PONUDE);
 
     // Na startu, preuzmi parametre iz URL-a (poslate sa Search.tsx) i napuni Wishlist
@@ -85,13 +85,13 @@ const Offers = () => {
             budzetMax: urlBudzet
         }));
 
-        // Učitaj wishlistu iz localStorage-a
+        // Učitaj wishlistu iz localStorage-a i sinhronizuj preko konteksta
         try {
             const storaged = localStorage.getItem('travel_wishlist');
             if (storaged) {
                 const parsed = JSON.parse(storaged);
                 if (Array.isArray(parsed)) {
-                    setWishlist(parsed);
+                    setWishlistExternally(parsed);
                 }
             }
         } catch (e) {
@@ -138,19 +138,9 @@ const Offers = () => {
         setTrips(filtrirano);
     }, [filteri]);
 
-    // FUNCTIONALITY 2: Toggle wishlist item and synchronize with LocalStorage
+    // FUNCTIONALITY 2: Toggle wishlist item and synchronize with LocalStorage Context
     const handleToggleWishlist = (tripName: string, tripKategorija: string) => {
-        const klinckanoGore = `${tripName} - ${tripKategorija}`;
-        let novaLista: string[];
-
-        if (wishlist.includes(klinckanoGore)) {
-            novaLista = wishlist.filter(x => x !== klinckanoGore);
-        } else {
-            novaLista = [...wishlist, klinckanoGore];
-        }
-
-        setWishlist(novaLista);
-        localStorage.setItem('travel_wishlist', JSON.stringify(novaLista));
+        toggleWishlist(tripName, tripKategorija);
     };
 
     // Resetuj sve filtere
