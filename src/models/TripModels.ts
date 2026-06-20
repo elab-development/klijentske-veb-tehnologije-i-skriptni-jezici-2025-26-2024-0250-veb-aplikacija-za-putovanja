@@ -22,4 +22,26 @@ export class TripCalculator {
     static primeniPopust(cena: number, popust: number): number {
         return cena - (cena * (popust / 100));
     }
+
+    static formatirajCenu(cena: number): string {
+        return `€${Math.round(cena)}`;
+    }
+}
+
+export class ReviewValidator {
+    static proveriDuzinuKomentara(tekst: string, min: number = 10, max: number = 250): boolean {
+        const cistTekst = tekst.trim();
+        return cistTekst.length >= min && cistTekst.length <= max;
+    }
+
+    static formatirajImeAutora(ime: string): string {
+        const cistoIme = ime.trim();
+        if (!cistoIme) return "Anoniman putnik";
+        
+        // Reči počinju velikim slovom
+        return cistoIme
+            .split(/\s+/)
+            .map(rec => rec.charAt(0).toUpperCase() + rec.slice(1).toLowerCase())
+            .join(" ");
+    }
 }

@@ -265,12 +265,12 @@ const Offers = () => {
                                     <div className="offer-footer-row">
                                         <div className="offer-price">
                                             <span className="price-label">Od (sa porezom)</span>
-                                            <span className="price-amount">€{konacnaCena}</span>
+                                            <span className="price-amount">{TripCalculator.formatirajCenu(konacnaCena)}</span>
                                         </div>
                                         <button 
                                             className="offer-info-btn" 
                                             onClick={() => {
-                                                alert(`Uspješna simulacija pregleda detalja za: ${trip.naslov}!\n\nID Ponude: ${trip.id}\nKategorija: ${trip.kategorija}\nOsnovna cena: €${trip.cena}\nCena sa 20% poreza: €${konacnaCena}`);
+                                                alert(`Uspješna simulacija pregleda detalja za: ${trip.naslov}!\n\nID Ponude: ${trip.id}\nKategorija: ${trip.kategorija}\nOsnovna cena: ${TripCalculator.formatirajCenu(trip.cena)}\nCena sa 20% poreza: ${TripCalculator.formatirajCenu(konacnaCena)}`);
                                             }}
                                         >
                                             Detaljnije ➔

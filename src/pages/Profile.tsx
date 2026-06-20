@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "../App.css";
 import Navbar from '../components/Navbar';
 import { useApp } from '../context/AppContext';
+import { TripCalculator } from '../models/TripModels';
 
 interface IBooking {
     id: number;
@@ -315,7 +316,7 @@ const Profile = () => {
                                 <div className="booking-details-right" style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
                                     <span style={{ fontSize: '12px', color: '#a19e95' }}>Plaćena cena (sa porezom):</span>
                                     <span style={{ fontFamily: 'JetBrains Mono', fontSize: '22px', fontWeight: 'bold', color: '#1e1e1e', margin: '2px 0 10px 0' }}>
-                                        €{booking.ukupnaCena}
+                                        {TripCalculator.formatirajCenu(booking.ukupnaCena)}
                                     </span>
                                     <button 
                                         className="profile-logout-btn" 

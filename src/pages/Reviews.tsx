@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { ReviewValidator } from '../models/TripModels';
 import type { IReview } from '../models/TripModels';
 import "../App.css";
 
@@ -68,14 +69,19 @@ const Reviews = () => {
             return;
         }
 
-        if (!noviKomentar.trim() || noviKomentar.length < 10) {
-            alert("Vaša recenzija mora imati najmanje 10 karaktera.");
+        // Korišćenje metode iz klase ReviewValidator (Zahtev: klasa aktivno korišćena u veb aplikaciji)
+        const isValidComment = ReviewValidator.proveriDuzinuKomentara(noviKomentar, 10, maxKaraktera);
+        if (!isValidComment) {
+            alert(`Vaša recenzija mora imati između 10 i ${maxKaraktera} karaktera.`);
             return;
         }
 
+        // Korišćenje metode iz klase ReviewValidator za formatiranje imena (sva početna velika slova)
+        const formatiranoIme = ReviewValidator.formatirajImeAutora(imeKorisnika);
+
         const novaRecenzija: IReview = {
             id: Date.now(), // Unikatan ID generisan preko tajmstempa
-            ime: imeKorisnika.trim(),
+            ime: formatiranoIme,
             ocena: odabranaOcena,
             tekst: noviKomentar.trim()
         };
