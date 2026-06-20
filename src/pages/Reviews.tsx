@@ -5,6 +5,8 @@ import { travelReviewValidator } from '../models/TripModels';
 import type { IReview } from '../models/TripModels';
 import "../App.css";
 
+//uspesno pracenje logicke strukture projekta!!!
+
 const Reviews = () => {
     // Strogo tipiziran state prema tvom modelu, sa učitavanjem iz skladišta
     const standardneRecenzije: IReview[] = [
