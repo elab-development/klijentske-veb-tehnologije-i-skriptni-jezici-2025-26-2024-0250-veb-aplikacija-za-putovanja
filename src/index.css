@@ -156,3 +156,102 @@ code {
   background-color: #faf9f6;
   color: #c0bdb5;
 }
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS POLISH OVERRIDES
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Reduce excessive padding on containers for smaller viewports */
+  .search-navbar,
+  .search-container,
+  .offers-container,
+  .profile-container,
+  .attractions-container,
+  .reviews-container,
+  .currency-calculator-wrapper,
+  .offers-filters-pills-bar,
+  .itinerary-container,
+  .custom-stats-widget {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* Make header titles scale nicely on phones */
+  .search-title,
+  .offers-main-title,
+  .reviews-main-title,
+  .attractions-main-title,
+  .profile-main-title {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+  }
+
+  .offers-subtitle,
+  .reviews-subtitle {
+    font-size: 14px !important;
+    padding: 0 10px;
+  }
+
+  /* Ensure the grid of search input widgets displays correctly */
+  .search-inputs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 15px !important;
+  }
+
+  /* Adjust calendar grid on search page */
+  .calendars-section {
+    padding: 0 15px !important;
+  }
+  .cal-picker-box {
+    width: 100% !important;
+  }
+
+  /* Currency calculator flex layout stacking */
+  .calc-grid-inputs {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Review rating stats columns on mobile */
+  .review-stats-summary-card {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 15px !important;
+  }
+
+  /* Pagination stacking prevention */
+  .pagination-container {
+    gap: 6px !important;
+    margin: 30px auto 10px auto !important;
+  }
+  .pagination-btn {
+    min-width: 32px !important;
+    height: 32px !important;
+    font-size: 13px !important;
+    padding: 0 8px !important;
+  }
+
+  /* Filter sections on mobile */
+  .pills-container {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+  .category-pill-btn {
+    padding: 6px 12px !important;
+    font-size: 12.5px !important;
+  }
+
+  /* Align profile grid cards better */
+  .profile-analytics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  /* Attractions list cards stacked neatly */
+  .attractions-list-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
