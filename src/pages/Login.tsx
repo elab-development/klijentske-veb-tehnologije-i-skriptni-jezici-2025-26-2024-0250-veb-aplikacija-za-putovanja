@@ -46,7 +46,7 @@ const Login = () => {
         </div>
 
         <InputField
-          containerClassName="w-full"
+          containerClassName="input-box"
           className="login-input"
           type="email"
           placeholder="Email"
@@ -55,7 +55,7 @@ const Login = () => {
         />
 
         <InputField
-          containerClassName="w-full"
+          containerClassName="input-box"
           className="login-input"
           type="password"
           placeholder="Lozinka"

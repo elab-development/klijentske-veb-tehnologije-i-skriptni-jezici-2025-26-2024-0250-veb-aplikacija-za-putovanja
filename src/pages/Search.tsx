@@ -148,6 +148,8 @@ const Search = () => {
     const [weatherData, setWeatherData] = useState<ICurrentWeather | null>(null);
     const [weatherLoading, setWeatherLoading] = useState<boolean>(false);
     const [weatherError, setWeatherError] = useState<string>('');
+    const [aktivnaSezona, setAktivnaSezona] = useState<"Leto" | "Zima">("Leto");
+    const [odabranaAtrakcijaZemlja, setOdabranaAtrakcijaZemlja] = useState<string>("Francuska");
 
     const triggerWeatherFetch = () => {
         setWeatherTrigger(prev => prev + 1);
@@ -296,7 +298,7 @@ const Search = () => {
                             onChange={(e) => setSearchParams({...searchParams, destinacija: e.target.value})}
                         />
                         <InputField
-                            label="Maksimalni budžet (€)"
+                            label={<span style={{ whiteSpace: 'nowrap' }}>Maksimalni budžet (€)</span>}
                             type="text"
                             placeholder="Npr. 300"
                             value={searchParams.budzet}
@@ -563,26 +565,269 @@ const Search = () => {
             {/* 4. SEKCIJA SA KALENDARIMA I DUGMIĆIMA */}
             <div className="calendars-section" id="calendars-navigation-blocks">
                 
-                {/* Levi blok: Datum polaska + Kalendar + Dugme */}
+                {/* Levi blok: Sezonski planer */}
                 <div className="calendar-block" id="departure-date-block">
-                    <span className="calendar-label-btn">Datumi i Ponude</span>
-                    <div className="mock-calendar-box">
-                        <img src="/slike/image9.png" alt="Kalendar odlazak" />
+                    <span className="calendar-label-btn">Sezonski Planer Selekcije</span>
+                    
+                    <div style={{ display: 'flex', gap: '8px', zIndex: 10, marginTop: '10px' }}>
+                        <button 
+                            onClick={() => setAktivnaSezona("Leto")}
+                            style={{
+                                background: aktivnaSezona === "Leto" ? "#cf4638" : "#fcfbf9",
+                                color: aktivnaSezona === "Leto" ? "#ffffff" : "#1a1a1a",
+                                border: "1.5px solid",
+                                borderColor: aktivnaSezona === "Leto" ? "#cf4638" : "#eae8e4",
+                                borderRadius: "8px",
+                                padding: "6px 14px",
+                                fontSize: "12px",
+                                fontWeight: "600",
+                                cursor: "pointer",
+                                transition: "all 0.2s"
+                            }}
+                        >
+                            ☀️ Letnja Sezona
+                        </button>
+                        <button 
+                            onClick={() => setAktivnaSezona("Zima")}
+                            style={{
+                                background: aktivnaSezona === "Zima" ? "#cf4638" : "#fcfbf9",
+                                color: aktivnaSezona === "Zima" ? "#ffffff" : "#1a1a1a",
+                                border: "1.5px solid",
+                                borderColor: aktivnaSezona === "Zima" ? "#cf4638" : "#eae8e4",
+                                borderRadius: "8px",
+                                padding: "6px 14px",
+                                fontSize: "12px",
+                                fontWeight: "600",
+                                cursor: "pointer",
+                                transition: "all 0.2s"
+                            }}
+                        >
+                            ❄️ Zimska Sezona
+                        </button>
                     </div>
-                    <p style={{ fontSize: '13px', color: '#6e6b64', textAlign: 'center', margin: '0 10px' }}>
-                        Pregledaj sve gotove aranžmane, njihove popuste i aktivne lokacije.
+
+                    <div style={{
+                        marginTop: "12px",
+                        width: "100%",
+                        background: "#fffcfb",
+                        border: "1.5px solid #eae8e4",
+                        borderRadius: "14px",
+                        padding: "16px",
+                        textAlign: "left",
+                        boxSizing: 'border-box'
+                    }}>
+                        {aktivnaSezona === "Leto" ? (
+                            <>
+                                <div style={{ fontSize: "11px", fontWeight: "700", color: "#cf4638", marginBottom: "4px", letterSpacing: '0.4px' }}>
+                                    PREPORUČENO ZA LETO 🏖️
+                                </div>
+                                <p style={{ fontSize: "12.5px", color: "#6a665e", marginBottom: "12px", lineHeight: "1.4" }}>
+                                    Savršeno vreme za prelepe plaže, mediteranske obilaske i sunčane evropske gradove.
+                                </p>
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {["Rim", "Barselona"].map((city) => (
+                                        <button
+                                            key={city}
+                                            onClick={() => {
+                                                setSearchParams({ ...searchParams, destinacija: city, tipPutovanja: "Letovanje" });
+                                                // Smooth scroll back to form
+                                                document.getElementById("search-inputs-box")?.scrollIntoView({ behavior: 'smooth' });
+                                            }}
+                                            style={{
+                                                background: "#ffffff",
+                                                border: "1px solid #eae8e4",
+                                                borderRadius: "6px",
+                                                padding: "5px 10px",
+                                                fontSize: "11.5px",
+                                                fontWeight: "600",
+                                                cursor: "pointer",
+                                                transition: "all 0.2s",
+                                                color: '#1a1a1a'
+                                            }}
+                                            onMouseOver={(e) => { e.currentTarget.style.borderColor = "#cf4638" }}
+                                            onMouseOut={(e) => { e.currentTarget.style.borderColor = "#eae8e4" }}
+                                            title={`Klikni da pretražiš letovanje u gradu: ${city}`}
+                                        >
+                                            📍 {city}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div style={{ marginTop: "12px", display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#a19e95' }}>
+                                    <span style={{ background: '#e8f5e9', color: '#2e7d32', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>-20% Popust</span>
+                                    <span>Rane uplate za letnju sezonu!</span>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div style={{ fontSize: "11px", fontWeight: "700", color: "#1565c0", marginBottom: "4px", letterSpacing: '0.4px' }}>
+                                    PREPORUČENO ZA ZIMU 🏔️
+                                </div>
+                                <p style={{ fontSize: "12.5px", color: "#6a665e", marginBottom: "12px", lineHeight: "1.4" }}>
+                                    Uživajte u magičnim ski centrima, prazničnim šoping rute i azijskim avanturama.
+                                </p>
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {["Tokio", "Pariz"].map((city) => (
+                                        <button
+                                            key={city}
+                                            onClick={() => {
+                                                setSearchParams({ ...searchParams, destinacija: city, tipPutovanja: "Zimski odmor" });
+                                                // Smooth scroll back to form
+                                                document.getElementById("search-inputs-box")?.scrollIntoView({ behavior: 'smooth' });
+                                            }}
+                                            style={{
+                                                background: "#ffffff",
+                                                border: "1px solid #eae8e4",
+                                                borderRadius: "6px",
+                                                padding: "5px 10px",
+                                                fontSize: "11.5px",
+                                                fontWeight: "600",
+                                                cursor: "pointer",
+                                                transition: "all 0.2s",
+                                                color: '#1a1a1a'
+                                            }}
+                                            onMouseOver={(e) => { e.currentTarget.style.borderColor = "#1565c0" }}
+                                            onMouseOut={(e) => { e.currentTarget.style.borderColor = "#eae8e4" }}
+                                            title={`Klikni da pretražiš zimski odmor u gradu: ${city}`}
+                                        >
+                                            📍 {city}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div style={{ marginTop: "12px", display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#a19e95' }}>
+                                    <span style={{ background: '#e3f2fd', color: '#1565c0', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>Topli Čaj</span>
+                                    <span>Zimski festivali u Tokiju i šoping!</span>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                    
+                    <p style={{ fontSize: '13px', color: '#6e6b64', textAlign: 'center', margin: '0 10px', lineHeight: '1.4' }}>
+                        Odaberi željenu sezonu i automatski popuni pretragu jednim klikom na preporučene gradove!
                     </p>
                     <CustomButton className="main-search-btn" text="Sve gotove ponude" onClick={() => navigate('/offers')} />
                 </div>
 
-                {/* Desni blok: Datum odlaska + Kalendar + Dugme */}
+                {/* Desni blok: Vodič kroz izlete */}
                 <div className="calendar-block" id="arrival-date-block">
-                    <span className="calendar-label-btn">Izleti i Atrakcije</span>
-                    <div className="mock-calendar-box">
-                        <img src="/slike/image9.png" alt="Kalendar povratak" />
+                    <span className="calendar-label-btn">Vodič kroz Izlete</span>
+                    
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', justifyContent: 'center', zIndex: 10, marginTop: '10px' }}>
+                        {[
+                            { name: "Pariz 🇫🇷", value: "Francuska" },
+                            { name: "Rim 🇮🇹", value: "Italija" },
+                            { name: "Barselona 🇪🇸", value: "Španija" },
+                            { name: "Tokio 🇯🇵", value: "Japan" }
+                        ].map((item) => (
+                            <button
+                                key={item.value}
+                                onClick={() => setOdabranaAtrakcijaZemlja(item.value)}
+                                style={{
+                                    background: odabranaAtrakcijaZemlja === item.value ? "#2e7d32" : "#fcfbf9",
+                                    color: odabranaAtrakcijaZemlja === item.value ? "#ffffff" : "#1a1a1a",
+                                    border: "1.5px solid",
+                                    borderColor: odabranaAtrakcijaZemlja === item.value ? "#2e7d32" : "#eae8e4",
+                                    borderRadius: "8px",
+                                    padding: "4px 8px",
+                                    fontSize: "11px",
+                                    fontWeight: "600",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s"
+                                }}
+                            >
+                                {item.name}
+                            </button>
+                        ))}
                     </div>
-                    <p style={{ fontSize: '13px', color: '#6e6b64', textAlign: 'center', margin: '0 10px' }}>
-                        Odaberi avanturu na destinaciji: Disneyland, Ajfelova kula, kafići i muzeji.
+
+                    <div style={{
+                        marginTop: "12px",
+                        width: "100%",
+                        background: "#fffcfb",
+                        border: "1.5px solid #eae8e4",
+                        borderRadius: "14px",
+                        padding: "16px",
+                        textAlign: "left",
+                        boxSizing: 'border-box'
+                    }}>
+                        <div style={{ fontSize: "11px", fontWeight: "700", color: "#2e7d32", marginBottom: "4px", letterSpacing: '0.4px', textTransform: 'uppercase' }}>
+                            ISTAKNUTI IZLETI & REZERVACIJE 🎟️
+                        </div>
+                        {odabranaAtrakcijaZemlja === "Francuska" && (
+                            <div>
+                                <div style={{ fontSize: '13.5px', fontWeight: 'bold', color: '#1a1a1a' }}>🏰 Disneyland + Muzej Luvr</div>
+                                <p style={{ fontSize: "12.5px", color: "#6a665e", marginTop: "3px", lineHeight: "1.4" }}>Spektakularan porodični izlet uz organizovan prevoz, ulaznice i stručnog vodiča.</p>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
+                                    <span style={{ fontSize: '12px', color: '#cf4638', fontWeight: 'bold' }}>Doplata: 40 €</span>
+                                    <button 
+                                        onClick={() => {
+                                            setSearchParams({ ...searchParams, destinacija: "Pariz" });
+                                            document.getElementById("search-inputs-box")?.scrollIntoView({ behavior: 'smooth' });
+                                        }}
+                                        style={{ fontSize: '11px', background: '#e8f5e9', border: 'none', padding: '3px 8px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', color: '#2e7d32' }}
+                                    >
+                                        Izaberi Pariz
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {odabranaAtrakcijaZemlja === "Italija" && (
+                            <div>
+                                <div style={{ fontSize: '13.5px', fontWeight: 'bold', color: '#1a1a1a' }}>🏛️ Koloseum + Vatikan muzeji</div>
+                                <p style={{ fontSize: "12.5px", color: "#6a665e", marginTop: "3px", lineHeight: "1.4" }}>Upoznajte kolevku rimske imperije i umetnost Vatikana bez čekanja u redu.</p>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
+                                    <span style={{ fontSize: '12px', color: '#cf4638', fontWeight: 'bold' }}>Doplata: 35 €</span>
+                                    <button 
+                                        onClick={() => {
+                                            setSearchParams({ ...searchParams, destinacija: "Rim" });
+                                            document.getElementById("search-inputs-box")?.scrollIntoView({ behavior: 'smooth' });
+                                        }}
+                                        style={{ fontSize: '11px', background: '#e8f5e9', border: 'none', padding: '3px 8px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', color: '#2e7d32' }}
+                                    >
+                                        Izaberi Rim
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {odabranaAtrakcijaZemlja === "Španija" && (
+                            <div>
+                                <div style={{ fontSize: '13.5px', fontWeight: 'bold', color: '#1a1a1a' }}>⛪ Sagrada Familia + Park Guell</div>
+                                <p style={{ fontSize: "12.5px", color: "#6a665e", marginTop: "3px", lineHeight: "1.4" }}>Neverovatna arhitektura čuvenog Antonija Gaudija i mediteranska panorama.</p>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
+                                    <span style={{ fontSize: '12px', color: '#cf4638', fontWeight: 'bold' }}>Doplata: 30 €</span>
+                                    <button 
+                                        onClick={() => {
+                                            setSearchParams({ ...searchParams, destinacija: "Barselona" });
+                                            document.getElementById("search-inputs-box")?.scrollIntoView({ behavior: 'smooth' });
+                                        }}
+                                        style={{ fontSize: '11px', background: '#e8f5e9', border: 'none', padding: '3px 8px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', color: '#2e7d32' }}
+                                    >
+                                        Izaberi Barselonu
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {odabranaAtrakcijaZemlja === "Japan" && (
+                            <div>
+                                <div style={{ fontSize: '13.5px', fontWeight: 'bold', color: '#1a1a1a' }}>🗻 Planina Fudži i Hakone izlet</div>
+                                <p style={{ fontSize: "12.5px", color: "#6a665e", marginTop: "3px", lineHeight: "1.4" }}>Tradicionalna prelepa panorama i poseta toplim izvorima Hakone planine.</p>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
+                                    <span style={{ fontSize: '12px', color: '#cf4638', fontWeight: 'bold' }}>Doplata: 70 €</span>
+                                    <button 
+                                        onClick={() => {
+                                            setSearchParams({ ...searchParams, destinacija: "Tokio" });
+                                            document.getElementById("search-inputs-box")?.scrollIntoView({ behavior: 'smooth' });
+                                        }}
+                                        style={{ fontSize: '11px', background: '#e8f5e9', border: 'none', padding: '3px 8px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', color: '#2e7d32' }}
+                                    >
+                                        Izaberi Tokio
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    
+                    <p style={{ fontSize: '13px', color: '#6e6b64', textAlign: 'center', margin: '0 10px', lineHeight: '1.4' }}>
+                        Odaberi avanturu na destinaciji: Disneyland, Ajfelova kula, Koloseum ili hramovi.
                     </p>
                     <CustomButton className="attraction-search-btn" text="Atrakcije & Izleti" onClick={() => navigate('/attractions')} />
                 </div>

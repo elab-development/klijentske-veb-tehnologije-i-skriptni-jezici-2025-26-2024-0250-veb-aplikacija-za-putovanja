@@ -4,7 +4,11 @@ import { travelReviewValidator } from '../models/TripModels';
 import type { IReview } from '../models/TripModels';
 import "../App.css";
 
-//uspesno pracenje logicke strukture projekta!!!
+const cityImages = [
+    "/slike/image.png",   // Pariz
+    "/slike/image1.png",  // Rim
+    "/slike/image2.png"   // Barselona
+];
 
 const Reviews = () => {
     // Strogo tipiziran state prema tvom modelu, sa učitavanjem iz skladišta
@@ -103,10 +107,10 @@ const Reviews = () => {
             </div>
 
             <div className="reviews-container" id="reviews-feed">
-                {reviews.map((r) => (
+                {reviews.map((r, idx) => (
                     <div key={r.id} className="review-row-item" id={`review-item-${r.id}`}>
                         <div className="review-avatar-box">
-                            <span className="review-avatar-emoji">👤</span>
+                            <img src={cityImages[idx % cityImages.length]} alt="Grad" />
                         </div>
                         
                         <div className="review-content-box">

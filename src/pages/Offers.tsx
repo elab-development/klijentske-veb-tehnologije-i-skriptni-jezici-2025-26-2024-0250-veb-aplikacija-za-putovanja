@@ -13,7 +13,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Pariz", 
         opis: "Grad svetlosti i romantike, poznat po umetnosti, kulturi, svetski poznatim muzejima i izuzetnoj kuhinji.", 
         cena: 165,
-        slika: "slike/image5.png",
+        slika: "/slike/Pariz.jpg",
         kategorija: "Evropa",
         tipPutovanja: "Romantika",
         trajanjeDana: 5,
@@ -24,7 +24,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Rim", 
         opis: "Večni grad bogate istorije, antičkih monumentalnih građevina, Koloseuma i vrhunskog italijanskog sladoleda.", 
         cena: 207,
-        slika: "slike/image5.png",
+        slika: "/slike/Rim.jpg",
         kategorija: "Evropa",
         tipPutovanja: "Istorija",
         trajanjeDana: 4,
@@ -35,7 +35,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Barselona", 
         opis: "Mediteranski biser koji spaja Gaudijevu neverovatnu arhitekturu, peščane plaže i bogat katalonski temperament.", 
         cena: 180,
-        slika: "slike/image5.png",
+        slika: "/slike/Barselona.jpeg",
         kategorija: "Evropa",
         tipPutovanja: "Odmor",
         trajanjeDana: 7,
@@ -46,7 +46,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Tokio", 
         opis: "Futuristička metropola gde se najsavremeniji neboderi mešaju sa drevnim šintoističkim hramovima.", 
         cena: 640,
-        slika: "slike/image5.png",
+        slika: "/slike/Tokio.jpg",
         kategorija: "Azija",
         tipPutovanja: "Grad",
         trajanjeDana: 10,
@@ -57,7 +57,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Njujork", 
         opis: "Grad koji nikad ne spava. Prošetajte Central Parkom, Tajms Skverom i doživite magiju Brodveja sa visina.", 
         cena: 750,
-        slika: "slike/image5.png",
+        slika: "/slike/Njujork.jpeg",
         kategorija: "Amerika",
         tipPutovanja: "Grad",
         trajanjeDana: 8,
@@ -68,7 +68,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Atina", 
         opis: "Kolijevka zapadne civilizacije, istorijski hramovi Akropolja, predivno more i ukusna tradicionalna grčka kuhinja.", 
         cena: 130,
-        slika: "slike/image5.png",
+        slika: "/slike/Atina.jpg",
         kategorija: "Evropa",
         tipPutovanja: "Istorija",
         trajanjeDana: 6,
@@ -79,7 +79,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "London", 
         opis: "Kosmopolitski grad bogat istorijom, muzejima sa besplatnim ulazom, prelepim kraljevskim parkovima i Big Benom.", 
         cena: 220,
-        slika: "slike/image5.png",
+        slika: "/slike/London.webp",
         kategorija: "Evropa",
         tipPutovanja: "Grad",
         trajanjeDana: 5,
@@ -90,7 +90,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Kairo", 
         opis: "Kolevka drevne egipatske civilizacije, fascinantne piramide u Gizi, veličanstvena reka Nil i pustinjske avanture.", 
         cena: 450,
-        slika: "slike/image5.png",
+        slika: "/slike/Kairo.jpg",
         kategorija: "Ostalo",
         tipPutovanja: "Avantura",
         trajanjeDana: 7,
@@ -101,7 +101,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Sidnej", 
         opis: "Australijska metropola sa čuvenom zgradom Opere, prelepom lukom, sunčanim plažama i divljim kengurima u blizini.", 
         cena: 920,
-        slika: "slike/image5.png",
+        slika: "/slike/Sidnej.jpg",
         kategorija: "Ostalo",
         tipPutovanja: "Avantura",
         trajanjeDana: 12,
@@ -112,7 +112,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Dubai", 
         opis: "Ultra-luksuzni grad u pustinji, čuveni neboder Burdž Kalifa, raj za vrhunski šoping i futurističke projekte.", 
         cena: 580,
-        slika: "slike/image5.png",
+        slika: "/slike/Dubai.webp",
         kategorija: "Azija",
         tipPutovanja: "Luksuz",
         trajanjeDana: 6,
@@ -123,7 +123,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Rio de Žaneiro", 
         opis: "Karnaval, sunčana plaža Kopakabana, zadivljujući kip Hrista Spasitelja i zarazna muzička samba energija.", 
         cena: 780,
-        slika: "slike/image5.png",
+        slika: "/slike/Rio de Zaneiro.jpg",
         kategorija: "Amerika",
         tipPutovanja: "Odmor",
         trajanjeDana: 10,
@@ -134,7 +134,7 @@ const SVE_PONUDE: ITrip[] = [
         naslov: "Rejkjavik", 
         opis: "Netaknuta islandska priroda, vreli gejziri, geotermalni izvori i čuvena igra polarne svetlosti na noćnom nebu.", 
         cena: 390,
-        slika: "slike/image5.png",
+        slika: "/slike/Rejkjavik.jpeg",
         kategorija: "Evropa",
         tipPutovanja: "Avantura",
         trajanjeDana: 8,
@@ -405,7 +405,9 @@ const Offers = () => {
                     </div>
 
                     <div className="small-filter-box">
-                        <label>Maks. budžet (€):</label>
+                    <label style={{ whiteSpace: 'nowrap' }}>
+                    Maksimalni budžet (€):
+                        </label>
                         <input 
                             type="number" 
                             placeholder="Svi budžeti" 
@@ -518,7 +520,7 @@ const Offers = () => {
                                 return (
                                     <div key={trip.id} className="offer-card" id={`offer-card-${trip.id}`}>
                                         <div className="offer-image-box" style={{ position: 'relative' }}>
-                                            <img src="slike/image5.png" alt={trip.naslov} />
+                                            <img src={trip.slika || "/slike/image5.png"} alt={trip.naslov} />
                                             
                                             {/* FUNCTIONALITY 2 Wishlist Heart Toggle Trigger Button Overlay */}
                                             <button 
@@ -638,7 +640,7 @@ const Offers = () => {
                                 const taxPrice = Math.round(travelTripCalculator.izracunajSaPorezom(rt.cena));
                                 return (
                                     <div key={rt.id} style={{ display: 'flex', gap: '12px', background: '#fcfbf9', border: '1px solid #eae8e4', borderRadius: '8px', padding: '10px', alignItems: 'center' }}>
-                                        <img src="slike/image5.png" alt={rt.naslov} style={{ width: '60px', height: '60px', borderRadius: '6px', objectFit: 'cover' }} />
+                                        <img src={rt.slika || "/slike/image5.png"} alt={rt.naslov} style={{ width: '60px', height: '60px', borderRadius: '6px', objectFit: 'cover' }} />
                                         <div style={{ flex: 1, minWidth: 0 }}>
                                             <h4 style={{ fontSize: '14px', fontWeight: 700, margin: 0, color: '#1a1a1a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{rt.naslov}</h4>
                                             <div style={{ fontSize: '11px', color: '#6e6b64', marginTop: '2px' }}>{rt.trajanjeDana} dana • {rt.tipPutovanja}</div>
@@ -721,7 +723,7 @@ const Offers = () => {
                                         {selectedTripForModal.naslov}
                                     </h3>
                                     
-                                    <img src="slike/image5.png" alt={selectedTripForModal.naslov} style={{ width: '100%', height: '160px', objectFit: 'cover', borderRadius: '8px', marginBottom: '15px' }} />
+                                    <img src={selectedTripForModal.slika || "/slike/image5.png"} alt={selectedTripForModal.naslov} style={{ width: '100%', height: '160px', objectFit: 'cover', borderRadius: '8px', marginBottom: '15px' }} />
                                     
                                     <p style={{ fontSize: '13px', color: '#6e6b64', lineHeight: '1.6', marginBottom: '20px' }}>
                                         {selectedTripForModal.opis}

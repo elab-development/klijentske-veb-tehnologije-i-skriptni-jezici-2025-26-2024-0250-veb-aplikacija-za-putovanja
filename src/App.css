@@ -93,6 +93,9 @@
       NAVIGATION BAR (Sleek Horizontal Header)
       ========================================================================== */
    .search-navbar {
+     position: sticky;
+     top: 0;
+     z-index: 1000;
      width: 100%;
      max-width: 1300px;
      height: 85px;
@@ -101,7 +104,7 @@
      display: flex;
      align-items: center;
      justify-content: space-between;
-     background: transparent;
+     background: #fcfbf9;
      border-bottom: 1.5px solid #e8e6e1;
    }
    
@@ -361,7 +364,7 @@
      min-height: 100vh;
      display: flex;
      flex-direction: column;
-     items-align: center;
+     align-items: center;
      justify-content: center;
      position: relative;
      padding: 60px 20px;
@@ -882,7 +885,14 @@
      text-align: center;
    }
    
-   .profile-avatar-icon {
+   .profile-avatar-box {
+      margin-top: 25px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .profile-avatar-icon {
      font-size: 110px;
      color: #cf4638;
    }
@@ -1471,6 +1481,7 @@
    }
    
    .small-filter-box label {
+      white-space: nowrap;
      font-size: 12px;
      color: #6e6b64;
      font-weight: 600;

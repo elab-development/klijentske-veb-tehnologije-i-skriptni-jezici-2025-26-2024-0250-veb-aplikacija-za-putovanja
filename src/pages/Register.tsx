@@ -135,10 +135,7 @@ const Register = () => {
         {/* DESNA STRANA: Okvir (Uokvirena bela/siva kutija sa slike) */}
         <div className="register-right-card">
           
-          {/* Crveni pečat sa avionom koji "štrči" van ivica kartice */}
-          <div className="stamp-badge">
-            <img src="/stamp-avion.png" alt="Stamp" /> 
-          </div>
+
 
           <InputField
             containerClassName="card-input-box"
