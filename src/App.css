@@ -262,6 +262,11 @@
    .login-input {
      width: 100%;
      margin-bottom: 16px;
+     text-align: center;
+   }
+   
+   .login-input::placeholder {
+     text-align: center;
    }
    
    .login-forgot {
@@ -331,15 +336,29 @@
      max-width: 1100px;
      display: grid;
      grid-template-columns: repeat(3, 1fr);
-     gap: 40px;
-     margin-top: 100px;
+     gap: 30px;
+     margin-top: 80px;
      border-top: 1.5px solid #eae8e4;
      padding-top: 40px;
    }
    
-   .login-footer div {
+   .login-footer .footer-col {
+     background: #ffffff;
+     border: 1.5px solid #eae8e4;
+     border-radius: 20px;
+     padding: 24px 20px;
+     align-items: center;
+     text-align: center;
+     box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+     transition: all 0.3s ease;
      display: flex;
      flex-direction: column;
+   }
+   
+   .login-footer .footer-col:hover {
+     transform: translateY(-3px);
+     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+     border-color: #cf4638;
    }
    
    .login-footer h4 {
@@ -347,13 +366,20 @@
      font-size: 18px;
      font-weight: 700;
      color: #1e1e1e;
-     margin-bottom: 14px;
+     margin-top: 8px;
+     margin-bottom: 12px;
    }
    
    .login-footer p {
      color: #6e6b64;
-     font-size: 13px;
+     font-size: 13.5px;
      line-height: 1.6;
+     margin: 2px 0;
+   }
+   
+   .footer-icon {
+     font-size: 26px;
+     margin-bottom: 4px;
    }
    
    /* ==========================================================================
@@ -1357,7 +1383,7 @@
    
    .calc-inputs-grid {
      display: grid;
-     grid-template-columns: 2fr 1fr 1fr 2fr;
+     grid-template-columns: 1fr 1fr;
      gap: 16px;
      align-items: flex-end;
    }
@@ -1399,15 +1425,23 @@
      border-color: #cf4638;
    }
    
-   .calc-result-box {
-     background-color: #faf9f6;
-     border: 1.5px solid #eae8e4;
-     border-radius: 12px;
-     padding: 10px 16px;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
+   .calc-result-box-styled {
      height: 44px;
+     border-radius: 10px;
+     border: 1.5px solid #eae8e4;
+     padding: 8px 12px;
+     font-size: 15px;
+     font-weight: 700;
+     color: #cf4638;
+     background: #faf9f6;
+     width: 100%;
+     display: flex;
+     align-items: center;
+     font-family: 'JetBrains Mono', monospace;
+     box-sizing: border-box;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
    }
    
    .result-label {

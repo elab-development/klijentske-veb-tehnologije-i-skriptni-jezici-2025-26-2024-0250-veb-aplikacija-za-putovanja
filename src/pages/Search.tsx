@@ -478,9 +478,11 @@ const Search = () => {
                             </select>
                         </div>
 
-                        <div className="calc-result-box">
-                            <span className="result-label">Ukupno dobijate:</span>
-                            <span className="result-amount">{konvertovaniIznos.toLocaleString()} {currencyCalc.uValuta}</span>
+                        <div className="calc-input-group">
+                            <label>Ukupno dobijate:</label>
+                            <div className="calc-result-box-styled">
+                                {konvertovaniIznos.toLocaleString()} {currencyCalc.uValuta}
+                            </div>
                         </div>
                     </div>
 

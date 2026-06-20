@@ -85,19 +85,22 @@ const Login = () => {
       </div>
 
       <div className="login-footer">
-        <div>
+        <div className="footer-col">
+          <span className="footer-icon">📍</span>
           <h4>Adresa</h4>
-          <p>Jove Ilića 154, 11000 Beograd</p>
-
-          <h4>Radno vreme</h4>
-          <p>
-            Radni dan 08:00 - 15:00
-            <br />
-            Vikend 08:00 - 12:00
-          </p>
+          <p>Jove Ilića 154</p>
+          <p>11000 Beograd, Srbija</p>
         </div>
 
-        <div>
+        <div className="footer-col">
+          <span className="footer-icon">🕒</span>
+          <h4>Radno Vreme</h4>
+          <p>Radni dan: 08:00 - 15:00</p>
+          <p>Vikend: 08:00 - 12:00</p>
+        </div>
+
+        <div className="footer-col">
+          <span className="footer-icon">✉️</span>
           <h4>Kontakt</h4>
           <p>putovanja@gmail.com</p>
           <p>+381 61 522 3434</p>
