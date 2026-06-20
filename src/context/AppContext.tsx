@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useContext, useState } from 'react';
 
 export interface IProfileData {
   ime: string;
@@ -48,39 +49,52 @@ const defaultProfile: IProfileData = {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [profile, setProfile] = useState<IProfileData>(defaultProfile);
-  const [wishlist, setWishlist] = useState<string[]>([]);
-  const [bookings, setBookings] = useState<IBooking[]>([]);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  // Load initial states from localStorage if available
-  useEffect(() => {
+  const [profile, setProfile] = useState<IProfileData>(() => {
     try {
       const savedProfile = localStorage.getItem('travel_profile');
       if (savedProfile) {
-        setProfile(JSON.parse(savedProfile));
-      } else {
-        localStorage.setItem('travel_profile', JSON.stringify(defaultProfile));
+        return JSON.parse(savedProfile);
       }
+      localStorage.setItem('travel_profile', JSON.stringify(defaultProfile));
+    } catch (e) {
+      console.error("Greška pri učitavanju profila", e);
+    }
+    return defaultProfile;
+  });
 
+  const [wishlist, setWishlist] = useState<string[]>(() => {
+    try {
       const savedWishlist = localStorage.getItem('travel_wishlist');
       if (savedWishlist) {
-        setWishlist(JSON.parse(savedWishlist));
-      }
-
-      const savedBookings = localStorage.getItem('travel_bookings');
-      if (savedBookings) {
-        setBookings(JSON.parse(savedBookings));
-      }
-
-      const savedAuth = localStorage.getItem('travel_isAuthenticated');
-      if (savedAuth === 'true') {
-        setIsAuthenticated(true);
+        return JSON.parse(savedWishlist);
       }
     } catch (e) {
-      console.error("Greška pri učitavanju Context skladišta:", e);
+      console.error("Greška pri učitavanju wishliste", e);
     }
-  }, []);
+    return [];
+  });
+
+  const [bookings, setBookings] = useState<IBooking[]>(() => {
+    try {
+      const savedBookings = localStorage.getItem('travel_bookings');
+      if (savedBookings) {
+        return JSON.parse(savedBookings);
+      }
+    } catch (e) {
+      console.error("Greška pri učitavanju rezervacija", e);
+    }
+    return [];
+  });
+
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    try {
+      const savedAuth = localStorage.getItem('travel_isAuthenticated');
+      return savedAuth === 'true';
+    } catch (e) {
+      console.error("Greška pri učitavanju auth stanja", e);
+    }
+    return false;
+  });
 
   const login = (email: string) => {
     setIsAuthenticated(true);

@@ -17,6 +17,30 @@ const Search = () => {
         budzet: ''
     });
 
+    interface ILastSearch {
+        destinacija: string;
+        brojPutnika: string;
+        turistickaAgencija: string;
+        tipPutovanja: string;
+        budzet: string;
+        vreme: string;
+    }
+
+    const [lastSearches, setLastSearches] = useState<ILastSearch[]>(() => {
+        try {
+            const saved = localStorage.getItem('travel_last_searches');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (Array.isArray(parsed)) {
+                    return parsed;
+                }
+            }
+        } catch (e) {
+            console.error("Greška pri učitavanju istorije pretrage iz localStorage:", e);
+        }
+        return [];
+    });
+
     // FUNCTIONALITY 7: Travel Currency & Conversions Calculator Widget state with API integrations
     const [currencyCalc, setCurrencyCalc] = useState({
         izIznos: '100',
@@ -210,8 +234,35 @@ const Search = () => {
         if (searchParams.turistickaAgencija) params.append('turistickaAgencija', searchParams.turistickaAgencija);
         if (searchParams.tipPutovanja) params.append('tipPutovanja', searchParams.tipPutovanja);
         if (searchParams.budzet) params.append('budzet', searchParams.budzet);
+
+        // Čuvanje smislenih podataka o pretrazi u localStorage
+        if (searchParams.destinacija || searchParams.budzet || searchParams.tipPutovanja || searchParams.brojPutnika || searchParams.turistickaAgencija) {
+            const novaPretraga: ILastSearch = {
+                destinacija: searchParams.destinacija,
+                brojPutnika: searchParams.brojPutnika,
+                turistickaAgencija: searchParams.turistickaAgencija,
+                tipPutovanja: searchParams.tipPutovanja,
+                budzet: searchParams.budzet,
+                vreme: new Date().toLocaleTimeString('sr-RS', { hour: '2-digit', minute: '2-digit' })
+            };
+            
+            // Izbaci duplikate koji imaju istu destinaciju i budžet kako ne bismo punili istim podacima
+            const filtrirane = lastSearches.filter(s => 
+                !(s.destinacija === novaPretraga.destinacija && s.budzet === novaPretraga.budzet && s.tipPutovanja === novaPretraga.tipPutovanja)
+            );
+            
+            const novaLista = [novaPretraga, ...filtrirane].slice(0, 5);
+            setLastSearches(novaLista);
+            localStorage.setItem('travel_last_searches', JSON.stringify(novaLista));
+        }
         
         navigate(`/offers?${params.toString()}`);
+    };
+
+    const handleObrisiIstoriju = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setLastSearches([]);
+        localStorage.removeItem('travel_last_searches');
     };
 
     return (
@@ -286,6 +337,73 @@ const Search = () => {
                             onClick={handlePretraziPutovanja} 
                         />
                     </div>
+
+                    {/* Prethodne pretrage iz localStorage */}
+                    {lastSearches.length > 0 && (
+                        <div className="last-searches-box" style={{ marginTop: '20px', borderTop: '1px dashed #eae8e4', paddingTop: '15px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                                <span style={{ fontSize: '12px', fontWeight: 600, color: '#6e6b64', letterSpacing: '0.3px', textTransform: 'uppercase' }}>
+                                    🕒 Poslednje pretrage (sačuvane lokalno):
+                                </span>
+                                <button 
+                                    onClick={handleObrisiIstoriju}
+                                    style={{ fontSize: '11px', color: '#cf4638', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontWeight: 600 }}
+                                >
+                                    Obriši istoriju
+                                </button>
+                            </div>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                {lastSearches.map((search, idx) => {
+                                    const parts: string[] = [];
+                                    if (search.destinacija) parts.push(search.destinacija);
+                                    if (search.budzet) parts.push(`do ${search.budzet}€`);
+                                    if (search.tipPutovanja) parts.push(search.tipPutovanja);
+                                    
+                                    const labelStr = parts.join(' • ') || 'Pretraga bez naziva';
+                                    
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={() => {
+                                                setSearchParams({
+                                                    destinacija: search.destinacija || '',
+                                                    brojPutnika: search.brojPutnika || '',
+                                                    turistickaAgencija: search.turistickaAgencija || '',
+                                                    tipPutovanja: search.tipPutovanja || '',
+                                                    budzet: search.budzet || ''
+                                                });
+                                            }}
+                                            style={{
+                                                background: '#fcfbf9',
+                                                border: '1px solid #eae8e4',
+                                                borderRadius: '20px',
+                                                padding: '6px 12px',
+                                                fontSize: '11.5px',
+                                                color: '#1a1a1a',
+                                                cursor: 'pointer',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '4px',
+                                                transition: 'all 0.2s',
+                                            }}
+                                            onMouseOver={(e) => {
+                                                e.currentTarget.style.borderColor = '#cf4638';
+                                                e.currentTarget.style.background = '#fffcfb';
+                                            }}
+                                            onMouseOut={(e) => {
+                                                e.currentTarget.style.borderColor = '#eae8e4';
+                                                e.currentTarget.style.background = '#fcfbf9';
+                                            }}
+                                            title="Klikni da popuniš formu ovim filterima"
+                                        >
+                                            <span>🔍 {labelStr}</span>
+                                            <span style={{ fontSize: '10px', color: '#a19e95', marginLeft: '4px' }}>({search.vreme})</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
 
                 </div>
 

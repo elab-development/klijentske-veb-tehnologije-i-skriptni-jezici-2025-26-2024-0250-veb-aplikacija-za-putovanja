@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { travelReviewValidator } from '../models/TripModels';
 import type { IReview } from '../models/TripModels';
@@ -30,32 +29,27 @@ const Reviews = () => {
         }
     ];
 
-    const [reviews, setReviews] = useState<IReview[]>([]);
-    
+    const [reviews, setReviews] = useState<IReview[]>(() => {
+        try {
+            const storaged = localStorage.getItem('travel_reviews');
+            if (storaged) {
+                const parsed = JSON.parse(storaged);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    return parsed;
+                }
+            }
+        } catch (e) {
+            console.error("Greška pri čitanju travel_reviews", e);
+        }
+        return standardneRecenzije;
+    });
+
     // Form fields state
     const [noviKomentar, setNoviKomentar] = useState("");
     const [imeKorisnika, setImeKorisnika] = useState("");
     const [odabranaOcena, setOdabranaOcena] = useState<number>(5);
     const [hoveredOcena, setHoveredOcena] = useState<number | null>(null);
     const maxKaraktera = 250;
-
-    // Load persisted reviews
-    useEffect(() => {
-        try {
-            const storaged = localStorage.getItem('travel_reviews');
-            if (storaged) {
-                const parsed = JSON.parse(storaged);
-                if (Array.isArray(parsed) && parsed.length > 0) {
-                    setReviews(parsed);
-                    return;
-                }
-            }
-        } catch (e) {
-            console.error(e);
-        }
-        // Fallback
-        setReviews(standardneRecenzije);
-    }, []);
 
     // Helper za repeat zvezdica
     const renderStars = (ocena: number) => {

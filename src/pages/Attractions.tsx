@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../App.css";
 import Navbar from '../components/Navbar';
@@ -17,45 +17,49 @@ interface IBooking {
     datumRezervacije: string;
 }
 
+const generateUniqueRandomId = () => {
+    return Math.floor(Math.random() * 99999999) + 1;
+};
+
+// Gradovi sa cenama avantura
+const GRAD_OPCIJE = [
+    { grad: "Pariz", drzava: "Francuska", bazaCena: 199 },
+    { grad: "Rim", drzava: "Italija", bazaCena: 149 },
+    { grad: "Barselona", drzava: "Španija", bazaCena: 179 },
+    { grad: "Tokio", drzava: "Japan", bazaCena: 490 }
+];
+
+// Detaljni planovi
+const PLAN_OPCIJE: { [key: string]: { ime: string; doplata: number }[] } = {
+    Francuska: [
+        { ime: "Disneyland + Muzej Luvr", doplata: 40 },
+        { ime: "Ajfelova Kula + Krstarenje Sennom", doplata: 20 },
+        { ime: "Standard obilazak grada i katedrala", doplata: 0 }
+    ],
+    Italija: [
+        { ime: "Koloseum + Vatikan muzeji", doplata: 35 },
+        { ime: "Panteon + degustacija pasta i vina", doplata: 15 },
+        { ime: "Standard šetnja gradom", doplata: 0 }
+    ],
+    Španija: [
+        { ime: "Sagrada Familia + Park Guell", doplata: 30 },
+        { ime: "Flamenko veče + tapas obilazak", doplata: 20 },
+        { ime: "Standard posjeta starom gradu", doplata: 0 }
+    ],
+    Japan: [
+        { ime: "Planina Fudži i Hakone izlet", doplata: 70 },
+        { ime: "Šibuja prelaz + tradicionalni čaj ceremony", doplata: 30 },
+        { ime: "Standard obilazak modernog Tokija", doplata: 0 }
+    ]
+};
+
 const Attractions = () => {
     const navigate = useNavigate();
     const { addBooking } = useApp();
 
-    // Gradovi sa cenama avantura
-    const GRAD_OPCIJE = [
-        { grad: "Pariz", drzava: "Francuska", bazaCena: 199 },
-        { grad: "Rim", drzava: "Italija", bazaCena: 149 },
-        { grad: "Barselona", drzava: "Španija", bazaCena: 179 },
-        { grad: "Tokio", drzava: "Japan", bazaCena: 490 }
-    ];
-
     // State za selektovani grad
     const [odabraniIndeks, setOdabraniIndeks] = useState<number>(0);
     const selektovaniGrad = GRAD_OPCIJE[odabraniIndeks];
-
-    // Detaljni planovi
-    const PLAN_OPCIJE: { [key: string]: { ime: string; doplata: number }[] } = {
-        Francuska: [
-            { ime: "Disneyland + Muzej Luvr", doplata: 40 },
-            { ime: "Ajfelova Kula + Krstarenje Sennom", doplata: 20 },
-            { ime: "Standard obilazak grada i katedrala", doplata: 0 }
-        ],
-        Italija: [
-            { ime: "Koloseum + Vatikan muzeji", doplata: 35 },
-            { ime: "Panteon + degustacija pasta i vina", doplata: 15 },
-            { ime: "Standard šetnja gradom", doplata: 0 }
-        ],
-        Španija: [
-            { ime: "Sagrada Familia + Park Guell", doplata: 30 },
-            { ime: "Flamenko veče + tapas obilazak", doplata: 20 },
-            { ime: "Standard posjeta starom gradu", doplata: 0 }
-        ],
-        Japan: [
-            { ime: "Planina Fudži i Hakone izlet", doplata: 70 },
-            { ime: "Šibuja prelaz + tradicionalni čaj ceremony", doplata: 30 },
-            { ime: "Standard obilazak modernog Tokija", doplata: 0 }
-        ]
-    };
 
     // Form states
     const [brojOsoba, setBrojOsoba] = useState<number>(1);
@@ -69,16 +73,8 @@ const Attractions = () => {
         transfer: false // 25 Eur po osobi
     });
 
-    // Price states
-    const [obracun, setObracun] = useState({
-        osnovica: 0,
-        naknadaDodaci: 0,
-        porez: 0,
-        ukupno: 0
-    });
-
     // Reaktivna kalkulacija cene (Functionality 4: Dynamic Budget Calculator)
-    useEffect(() => {
+    const obracun = useMemo(() => {
         const plans = PLAN_OPCIJE[selektovaniGrad.drzava] || [];
         const planDoplata = plans[odabraniPlanIndeks]?.doplata || 0;
         
@@ -96,18 +92,13 @@ const Attractions = () => {
         const izracunaniPorez = subtotal * 0.20; // 20% PDV
         const finalnaCena = subtotal + izracunaniPorez;
 
-        setObracun({
+        return {
             osnovica: ukupnaOsnovica,
             naknadaDodaci: sumaDodataka,
             porez: Math.round(izracunaniPorez),
             ukupno: Math.round(finalnaCena)
-        });
-    }, [odabraniIndeks, odabraniPlanIndeks, brojOsoba, dodaci]);
-
-    // Očisti plan indeks na promjenu države
-    useEffect(() => {
-        setOdabraniPlanIndeks(0);
-    }, [odabraniIndeks]);
+        };
+    }, [selektovaniGrad, odabraniPlanIndeks, brojOsoba, dodaci]);
 
     // FUNCTIONALITY 4: Create booking object and persist in LocalStorage Context
     const handleRezersisiSada = () => {
@@ -119,8 +110,10 @@ const Attractions = () => {
         if (dodaci.transfer) izabraniDodaciNazivi.push("Luksuzni transfer");
         if (dodaci.privatniVodic) izabraniDodaciNazivi.push("Privatni licencirani vodič");
 
+        const uuidGeneratedId = generateUniqueRandomId();
+
         const novaRezervacija: IBooking = {
-            id: Date.now(),
+            id: uuidGeneratedId,
             destinacija: selektovaniGrad.drzava,
             grad: selektovaniGrad.grad,
             datum,
@@ -164,7 +157,10 @@ const Attractions = () => {
                         <label>Odaberite grad posjete:</label>
                         <select 
                             value={odabraniIndeks} 
-                            onChange={(e) => setOdabraniIndeks(parseInt(e.target.value))}
+                            onChange={(e) => {
+                                setOdabraniIndeks(parseInt(e.target.value));
+                                setOdabraniPlanIndeks(0);
+                            }}
                             style={{ height: '46px', borderRadius: '12px', border: '1.5px solid #eae8e4' }}
                         >
                             {GRAD_OPCIJE.map((item, index) => (

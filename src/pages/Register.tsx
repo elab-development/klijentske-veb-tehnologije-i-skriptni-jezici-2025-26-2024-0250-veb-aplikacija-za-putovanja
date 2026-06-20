@@ -23,7 +23,7 @@ const Register = () => {
   });
 
   // handleSubmit napisan jednostavno u tvom stilu, radi bez greške u TS-u
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!userData.ime.trim() || !userData.email.trim()) {
       alert("Ime i E-mail su obavezna polja!");

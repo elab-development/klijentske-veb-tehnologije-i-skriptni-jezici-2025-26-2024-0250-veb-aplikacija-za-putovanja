@@ -5,18 +5,6 @@ import Navbar from '../components/Navbar';
 import { useApp } from '../context/AppContext';
 import { travelTripCalculator } from '../models/TripModels';
 
-interface IBooking {
-    id: number;
-    destinacija: string;
-    grad: string;
-    datum: string;
-    plan: string;
-    brojOsoba: number;
-    dodaci: string[];
-    ukupnaCena: number;
-    datumRezervacije: string;
-}
-
 interface IProfileData {
     ime: string;
     pol: string;
@@ -35,9 +23,17 @@ const Profile = () => {
     const [profileData, setProfileData] = useState<IProfileData>(profile);
     const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
-    // Synchronize local edit state with global profile state on context updates
+    // Synchronize local edit state with global profile state on context updates safely
     useEffect(() => {
-        setProfileData(profile);
+        let active = true;
+        Promise.resolve().then(() => {
+            if (active) {
+                setProfileData(profile);
+            }
+        });
+        return () => {
+            active = false;
+        };
     }, [profile]);
 
     // FUNCTIONALITY 6: Schema Validators for forms
@@ -64,7 +60,7 @@ const Profile = () => {
         // Phone check: +xxxx or standard format
         if (!data.telefon.trim()) {
             errors.telefon = "Broj telefona je obavezan.";
-        } else if (!/^\+?[0-9\s\-]{6,15}$/.test(data.telefon)) {
+        } else if (!/^\+?[0-9\s-]{6,15}$/.test(data.telefon)) {
             errors.telefon = "Unesite ispravan broj telefona (npr. +3816XXXXXXXX).";
         }
 
