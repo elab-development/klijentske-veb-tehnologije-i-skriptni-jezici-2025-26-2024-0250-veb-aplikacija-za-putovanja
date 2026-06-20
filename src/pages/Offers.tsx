@@ -11,7 +11,7 @@ const Offers = () => {
     const location = useLocation();
     const { wishlist, toggleWishlist, setWishlistExternally } = useApp();
     
-    // Proširena baza destinacija za bogatije filtriranje
+    // Proširena baza destinacija za bogatije i kompletnije filtriranje i paginaciju
     const SVE_PONUDE: ITrip[] = [
         { 
             id: 1, 
@@ -24,7 +24,7 @@ const Offers = () => {
         { 
             id: 2, 
             naslov: "Rim", 
-            opis: "Večni grad bogate istorije, antičkih monumentalnih građevina, Koloseuma i vrhunskog sladoleda.", 
+            opis: "Večni grad bogate istorije, antičkih monumentalnih građevina, Koloseuma i vrhunskog italijanskog sladoleda.", 
             cena: 207,
             slika: "slike/image5.png",
             kategorija: "Evropa"
@@ -32,7 +32,7 @@ const Offers = () => {
         { 
             id: 3, 
             naslov: "Barselona", 
-            opis: "Mediteranski biser koji spaja Gaudijevu neverovatnu arhitekturu, peščane plaže i bogat noćni život.", 
+            opis: "Mediteranski biser koji spaja Gaudijevu neverovatnu arhitekturu, peščane plaže i bogat katalonski temperament.", 
             cena: 180,
             slika: "slike/image5.png",
             kategorija: "Evropa"
@@ -40,7 +40,7 @@ const Offers = () => {
         { 
             id: 4, 
             naslov: "Tokio", 
-            opis: "Futuristička metropola gde se savremeni neboderi mešaju sa drevnim šintoističkim hramovima.", 
+            opis: "Futuristička metropola gde se najsavremeniji neboderi mešaju sa drevnim šintoističkim hramovima.", 
             cena: 640,
             slika: "slike/image5.png",
             kategorija: "Azija"
@@ -48,7 +48,7 @@ const Offers = () => {
         { 
             id: 5, 
             naslov: "Njujork", 
-            opis: "Grad koji nikad ne spava. Prošetajte Central Parkom, Tajms Skverom i doživite magiju Brodveja.", 
+            opis: "Grad koji nikad ne spava. Prošetajte Central Parkom, Tajms Skverom i doživite magiju Brodveja sa visina.", 
             cena: 750,
             slika: "slike/image5.png",
             kategorija: "Amerika"
@@ -56,8 +56,56 @@ const Offers = () => {
         { 
             id: 6, 
             naslov: "Atina", 
-            opis: "Kolijevka zapadne civilizacije, istorijski hramovi Akropolja i ukusna lokalna grčka kuhinja.", 
+            opis: "Kolijevka zapadne civilizacije, istorijski hramovi Akropolja, predivno more i ukusna tradicionalna grčka kuhinja.", 
             cena: 130,
+            slika: "slike/image5.png",
+            kategorija: "Evropa"
+        },
+        { 
+            id: 7, 
+            naslov: "London", 
+            opis: "Kosmopolitski grad bogat istorijom, muzejima sa besplatnim ulazom, prelepim kraljevskim parkovima i Big Benom.", 
+            cena: 220,
+            slika: "slike/image5.png",
+            kategorija: "Evropa"
+        },
+        { 
+            id: 8, 
+            naslov: "Kairo", 
+            opis: "Kolevka drevne egipatske civilizacije, fascinantne piramide u Gizi, veličanstvena reka Nil i pustinjske avanture.", 
+            cena: 450,
+            slika: "slike/image5.png",
+            kategorija: "Ostalo"
+        },
+        { 
+            id: 9, 
+            naslov: "Sidnej", 
+            opis: "Australijska metropola sa čuvenom zgradom Opere, prelepom lukom, sunčanim plažama i divljim kengurima u blizini.", 
+            cena: 920,
+            slika: "slike/image5.png",
+            kategorija: "Ostalo"
+        },
+        { 
+            id: 10, 
+            naslov: "Dubai", 
+            opis: "Ultra-luksuzni grad u pustinji, čuveni neboder Burdž Kalifa, raj za vrhunski šoping i futurističke projekte.", 
+            cena: 580,
+            slika: "slike/image5.png",
+            kategorija: "Azija"
+        },
+        { 
+            id: 11, 
+            naslov: "Rio de Žaneiro", 
+            opis: "Karnaval, sunčana plaža Kopakabana, zadivljujući kip Hrista Spasitelja i zarazna muzička samba energija.", 
+            cena: 780,
+            slika: "slike/image5.png",
+            kategorija: "Amerika"
+        },
+        { 
+            id: 12, 
+            naslov: "Rejkjavik", 
+            opis: "Netaknuta islandska priroda, vreli gejziri, geotermalni izvori i čuvena igra polarne svetlosti na noćnom nebu.", 
+            cena: 390,
             slika: "slike/image5.png",
             kategorija: "Evropa"
         }
@@ -72,6 +120,10 @@ const Offers = () => {
     });
 
     const [trips, setTrips] = useState<ITrip[]>(SVE_PONUDE);
+
+    // PAGINACIJA - Stanje za praćenje trenutne stranice i broj po stranici
+    const [trenutnaStranica, setTrenutnaStranica] = useState<number>(1);
+    const stavkePoStranici = 3;
 
     // Na startu, preuzmi parametre iz URL-a (poslate sa Search.tsx) i napuni Wishlist
     useEffect(() => {
@@ -123,7 +175,7 @@ const Offers = () => {
             }
         }
 
-        // 3. Filtriranje po kategorijama (Evropa, Azija, Amerika)
+        // 3. Filtriranje po kategorijama (Evropa, Azija, Amerika, Ostalo)
         if (filteri.kategorija !== 'Sve') {
             filtrirano = filtrirano.filter(t => t.kategorija === filteri.kategorija);
         }
@@ -136,6 +188,7 @@ const Offers = () => {
         }
 
         setTrips(filtrirano);
+        setTrenutnaStranica(1); // Kad god se filteri promene, vraćamo se na prvu stranu
     }, [filteri]);
 
     // FUNCTIONALITY 2: Toggle wishlist item and synchronize with LocalStorage Context
@@ -154,13 +207,19 @@ const Offers = () => {
         navigate('/offers');
     };
 
+    // MATEMATIKA ZA PAGINACIJU
+    const ukupnoStranica = Math.ceil(trips.length / stavkePoStranici) || 1;
+    const indeksPoslednjeStavke = trenutnaStranica * stavkePoStranici;
+    const indeksPrveStavke = indeksPoslednjeStavke - stavkePoStranici;
+    const prikazanePonude = trips.slice(indeksPrveStavke, indeksPoslednjeStavke);
+
     return (
         <div className="offers-page" id="offers-page-root">
             <Navbar />
 
             <div className="offers-header" id="offers-main-header">
                 <h1 className="offers-main-title">Preporučene ponude</h1>
-                <p className="offers-subtitle">Istražite gotove evropske i svetske aranžmane sa uključenim popustima!</p>
+                <p className="offers-subtitle">Istražite gotove svetske aranžmane sa uključenim popustima i ugrađenom paginacijom!</p>
             </div>
 
             {/* INTERACTIVE FILTERS CONTROLS DISPLAY (Functionality 1 Component UI) */}
@@ -202,7 +261,7 @@ const Offers = () => {
                 {/* Category Pills and Reset Action */}
                 <div className="category-pills-row">
                     <div className="pills-container">
-                        {['Sve', 'Evropa', 'Azija', 'Amerika'].map((kat) => (
+                        {['Sve', 'Evropa', 'Azija', 'Amerika', 'Ostalo'].map((kat) => (
                             <button 
                                 key={kat}
                                 className={`category-pill-btn ${filteri.kategorija === kat ? 'pill-active' : ''}`}
@@ -224,7 +283,9 @@ const Offers = () => {
             <div className="offers-container" id="offers-list">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                     <h3 className="offers-section-title">Izaberite željeno putovanje:</h3>
-                    <span style={{ fontSize: '14px', color: '#6e6b64', fontWeight: 600 }}>Prilagođeno vama ({trips.length} rezultata)</span>
+                    <span style={{ fontSize: '14px', color: '#6e6b64', fontWeight: 600 }}>
+                        Prikazano {(trips.length > 0) ? (indeksPrveStavke + 1) : 0}-{(indeksPoslednjeStavke > trips.length) ? trips.length : indeksPoslednjeStavke} od {trips.length} rezultata
+                    </span>
                 </div>
                 
                 {trips.length === 0 ? (
@@ -233,60 +294,91 @@ const Offers = () => {
                         <button className="reset-filters-btn" onClick={handleObrisiFiltere} style={{ marginTop: '10px' }}>Prikaži sve ponude</button>
                     </div>
                 ) : (
-                    <div className="offers-grid">
-                        {trips.map(trip => {
-                            const konacnaCena = Math.round(travelTripCalculator.izracunajSaPorezom(trip.cena));
-                            const listFormattedName = `${trip.naslov} - ${trip.kategorija}`;
-                            const isSaved = wishlist.includes(listFormattedName);
+                    <>
+                        <div className="offers-grid">
+                            {prikazanePonude.map(trip => {
+                                const konacnaCena = Math.round(travelTripCalculator.izracunajSaPorezom(trip.cena));
+                                const listFormattedName = `${trip.naslov} - ${trip.kategorija}`;
+                                const isSaved = wishlist.includes(listFormattedName);
 
-                            return (
-                                <div key={trip.id} className="offer-card" id={`offer-card-${trip.id}`}>
-                                    <div className="offer-image-box" style={{ position: 'relative' }}>
-                                        <img src="slike/image5.png" alt={trip.naslov} />
+                                return (
+                                    <div key={trip.id} className="offer-card" id={`offer-card-${trip.id}`}>
+                                        <div className="offer-image-box" style={{ position: 'relative' }}>
+                                            <img src="slike/image5.png" alt={trip.naslov} />
+                                            
+                                            {/* FUNCTIONALITY 2 Wishlist Heart Toggle Trigger Button Overlay */}
+                                            <button 
+                                                className={`wishlist-heart-badge ${isSaved ? 'heart-saved' : ''}`}
+                                                onClick={() => handleToggleWishlist(trip.naslov, trip.kategorija)}
+                                                title={isSaved ? "Ukloni iz liste želja" : "Sačuvaj u listu želja"}
+                                            >
+                                                {isSaved ? '❤️' : '🤍'}
+                                            </button>
+                                        </div>
                                         
-                                        {/* FUNCTIONALITY 2 Wishlist Heart Toggle Trigger Button Overlay */}
-                                        <button 
-                                            className={`wishlist-heart-badge ${isSaved ? 'heart-saved' : ''}`}
-                                            onClick={() => handleToggleWishlist(trip.naslov, trip.kategorija)}
-                                            title={isSaved ? "Ukloni iz liste želja" : "Sačuvaj u listu želja"}
-                                        >
-                                            {isSaved ? '❤️' : '🤍'}
-                                        </button>
-                                    </div>
-                                    
-                                    <div className="offer-card-details">
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <h4 style={{ fontSize: '20px', fontFamily: 'Playfair Display', fontWeight: 700 }}>{trip.naslov}</h4>
-                                            <span className="offer-category-badge">{trip.kategorija}</span>
+                                        <div className="offer-card-details">
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <h4 style={{ fontSize: '20px', fontFamily: 'Playfair Display', fontWeight: 700 }}>{trip.naslov}</h4>
+                                                <span className="offer-category-badge">{trip.kategorija}</span>
+                                            </div>
+                                            <p className="offer-description">{trip.opis}</p>
                                         </div>
-                                        <p className="offer-description">{trip.opis}</p>
-                                    </div>
-                                    
-                                    <div className="offer-footer-row">
-                                        <div className="offer-price">
-                                            <span className="price-label">Od (sa porezom)</span>
-                                            <span className="price-amount">{travelTripCalculator.formatirajCenu(konacnaCena)}</span>
+                                        
+                                        <div className="offer-footer-row">
+                                            <div className="offer-price">
+                                                <span className="price-label">Od (sa porezom)</span>
+                                                <span className="price-amount">{travelTripCalculator.formatirajCenu(konacnaCena)}</span>
+                                            </div>
+                                            <button 
+                                                className="offer-info-btn" 
+                                                onClick={() => {
+                                                    alert(`Uspješna simulacija pregleda detalja za: ${trip.naslov}!\n\nID Ponude: ${trip.id}\nKategorija: ${trip.kategorija}\nOsnovna cena: ${travelTripCalculator.formatirajCenu(trip.cena)}\nCena sa 20% poreza: ${travelTripCalculator.formatirajCenu(konacnaCena)}`);
+                                                }}
+                                            >
+                                                Detaljnije ➔
+                                            </button>
                                         </div>
-                                        <button 
-                                            className="offer-info-btn" 
-                                            onClick={() => {
-                                                alert(`Uspješna simulacija pregleda detalja za: ${trip.naslov}!\n\nID Ponude: ${trip.id}\nKategorija: ${trip.kategorija}\nOsnovna cena: ${travelTripCalculator.formatirajCenu(trip.cena)}\nCena sa 20% poreza: ${travelTripCalculator.formatirajCenu(konacnaCena)}`);
-                                            }}
-                                        >
-                                            Detaljnije ➔
-                                        </button>
                                     </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* REGULAR INTERACTIVE PAGINATION COMPONENT DISPLAY */}
+                        <div className="pagination-container" id="offers-pagination-controls">
+                            <button 
+                                className="pagination-btn"
+                                onClick={() => setTrenutnaStranica(prev => Math.max(prev - 1, 1))}
+                                disabled={trenutnaStranica === 1}
+                            >
+                                ◀ Prethodna
+                            </button>
+                            
+                            {Array.from({ length: ukupnoStranica }, (_, i) => i + 1).map((brojStranice) => (
+                                <button
+                                    key={brojStranice}
+                                    className={`pagination-btn ${trenutnaStranica === brojStranice ? 'active' : ''}`}
+                                    onClick={() => setTrenutnaStranica(brojStranice)}
+                                >
+                                    {brojStranice}
+                                </button>
+                            ))}
+                            
+                            <button 
+                                className="pagination-btn"
+                                onClick={() => setTrenutnaStranica(prev => Math.min(prev + 1, ukupnoStranica))}
+                                disabled={trenutnaStranica === ukupnoStranica}
+                            >
+                                Sledeća ▶
+                            </button>
+                        </div>
+                    </>
                 )}
             </div>
 
-            <div className="offers-load-more-container">
-                <button className="offers-load-more-btn" onClick={() => alert("Preuzimanje spoljnih turističkih agencija je završeno! Sve dostupne offline ponude su već prikazane.")}>
-                    Prikaži još ponuda <span className="arrow-icon">↩</span>
-                </button>
+            <div className="offers-load-more-container" style={{ marginTop: '20px', marginBottom: '40px' }}>
+                <div style={{ textAlign: 'center', fontSize: '13px', color: '#a19e95' }}>
+                    Stranica <strong>{trenutnaStranica}</strong> od ukupno <strong>{ukupnoStranica}</strong>
+                </div>
             </div>
         </div>
     );

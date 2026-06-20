@@ -110,3 +110,49 @@ code {
 }
 
 .container { max-width: 1200px; margin: auto; } i .review-card { border-bottom: 1px solid #ccc; }
+
+/* PAGINATION STYLES */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 40px auto 10px auto;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  background-color: transparent;
+  border: 1.5px solid #eae8e4;
+  color: #1e1e1e;
+  border-radius: 10px;
+  min-width: 40px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  padding: 0 12px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  border-color: #cf4638;
+  color: #cf4638;
+  background-color: #fdf3f0;
+}
+
+.pagination-btn.active {
+  background-color: #cf4638;
+  color: #ffffff;
+  border-color: #cf4638;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #faf9f6;
+  color: #c0bdb5;
+}
